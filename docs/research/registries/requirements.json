@@ -82,5 +82,11 @@
     "requirement": "Driver warnings meet a separate, stricter false-alarm budget and stay lab/simulator-only until an HMI safety review is recorded",
     "acceptance_evidence": "Driver-budget result in P6; recorded HMI review decision before any road use",
     "status": "accepted"
+  },
+  {
+    "id": "R15",
+    "requirement": "Every observation carries an authentication result (valid, invalid_signature, unknown_issuer, expired, revoked, unsigned, not_available) and revocation freshness, recorded separately from the ML score",
+    "acceptance_evidence": "Schema tests; signed and invalid simulated traffic; outsider vs insider results reported separately",
+    "status": "accepted"
   }
 ]
