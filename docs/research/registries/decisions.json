@@ -405,5 +405,30 @@
     ],
     "record": "decisions/ADR19-operational-targets.md",
     "revisit_trigger": "P6 curves available, hardware chosen, real site volumes, or E13 alert-tolerance results"
+  },
+  {
+    "id": "ADR20",
+    "title": "Signal paths and field trust labels",
+    "status": "accepted",
+    "proposal": "86-field trust map (CAM R1 + R2 flagged, receiver, OBU ego, evidence, VeReMi NextGen); oracle/output fields forbidden as inputs, enforced by the validator; timing from generationDeltaTime only",
+    "requirement_ids": [
+      "R01",
+      "R02",
+      "R03"
+    ],
+    "source_ids": [
+      "S03",
+      "S04",
+      "S08",
+      "S09"
+    ],
+    "experiment_ids": [
+      "E03"
+    ],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 1.5"
+    ],
+    "record": "decisions/ADR20-signal-trust-map.md",
+    "revisit_trigger": "New message type or dataset, a data sample contradicts a label, or lab hardware CAM release differs"
   }
 ]

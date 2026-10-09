@@ -23,6 +23,7 @@ This first delivery contains a source-code audit, a targeted literature evidence
 11. [Traceability, templates and open decisions](10_traceability.md)
 12. [Primary sources and reading depth](11_sources.md)
 13. [Rebuild from scratch: step-by-step plan](12_rebuild_plan.md) — supersedes the order in 09
+14. [Signal paths and trust map](13_signal_trust_map.md)
 
 The machine-readable records are under [registries](registries/). Templates are under [templates](templates/). Run `python tools/research/validate_registry.py` from the repository root to check their relationships. This command validates documentation records, not application readiness.
 
