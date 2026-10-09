@@ -3,8 +3,9 @@
 One change = one commit = one record here. A record lets anyone retest or undo a single
 change without reading the rest of the history.
 
-File name: `CR-NNN-<short-slug>.md`. Technology choices go in an ADR
-([template](../templates/decision_record.md)); the CR that implements an ADR links to it.
+File name: `CR-NNN-<short-slug>.md` ([template](../templates/change_record.md)). Technology
+choices go in an ADR ([template](../templates/decision_record.md)) under
+[decisions](../decisions/); the CR that implements an ADR links to it.
 
 ## Record format
 
@@ -16,11 +17,22 @@ File name: `CR-NNN-<short-slug>.md`. Technology choices go in an ADR
 6. **Alternatives considered** — each with why it was not chosen and what would make it
    the better choice later.
 7. **How to retest** — exact commands and expected output.
-8. **How to change or revert** — `git revert <sha>`, plus what to edit to switch to an
-   alternative.
+8. **How to change or revert** — `git revert` the commit that added the record (find it
+   with `git log --diff-filter=A --format=%h -- <record file>`), plus what to edit to
+   switch to an alternative.
+
+## Enforcement ([ADR14](../decisions/ADR14-record-system.md))
+
+- `tools/research/validate_registry.py` fails if a record lacks a required section, a CR
+  file is missing from the index below (or the reverse), an ADR file is not registered in
+  `registries/decisions.json`, or a commit cited there does not exist.
+- Every commit message must name its record (`ADRnn` or `CR-nnn`): checked by the
+  `commit-msg` hook locally and by CI on every pull request.
 
 ## Index
 
-| CR | Title | Commit | Status |
+| CR | Title | Plan step | Status |
 |---|---|---|---|
-| — | No changes recorded yet | — | — |
+
+No change records yet. A record's commit is found from git (see item 8), so the index
+does not repeat it.

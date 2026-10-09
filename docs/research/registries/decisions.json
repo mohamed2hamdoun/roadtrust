@@ -166,7 +166,10 @@
       "Owner decision 2026-10-09, plan step 0.3"
     ],
     "record": "decisions/ADR08-separate-repository.md",
-    "revisit_trigger": "Publishing, outside collaborators, or a single-history requirement"
+    "revisit_trigger": "Publishing, outside collaborators, or a single-history requirement",
+    "commits": [
+      "65fd622"
+    ]
   },
   {
     "id": "ADR09",
@@ -182,7 +185,10 @@
       "Owner decision 2026-10-09, plan step 0.3"
     ],
     "record": "decisions/ADR09-monorepo-layout.md",
-    "revisit_trigger": "A part gets its own owner or release cycle, or unrelated CI becomes costly"
+    "revisit_trigger": "A part gets its own owner or release cycle, or unrelated CI becomes costly",
+    "commits": [
+      "7aa3ee6"
+    ]
   },
   {
     "id": "ADR10",
@@ -198,7 +204,10 @@
       "Owner decision 2026-10-09, plan step 0.3"
     ],
     "record": "decisions/ADR10-branching-and-prs.md",
-    "revisit_trigger": "PR overhead slows work, or a second developer joins"
+    "revisit_trigger": "PR overhead slows work, or a second developer joins",
+    "commits": [
+      "82ee3ed"
+    ]
   },
   {
     "id": "ADR11",
@@ -215,7 +224,10 @@
       "Owner decision 2026-10-09, plan step 0.4"
     ],
     "record": "decisions/ADR11-python-and-packaging.md",
-    "revisit_trigger": "Dependency lacks 3.12 wheels, 3.12 nears EOL, or a second Python package appears"
+    "revisit_trigger": "Dependency lacks 3.12 wheels, 3.12 nears EOL, or a second Python package appears",
+    "commits": [
+      "1638a22"
+    ]
   },
   {
     "id": "ADR12",
@@ -232,7 +244,10 @@
       "Owner decision 2026-10-09, plan step 0.4"
     ],
     "record": "decisions/ADR12-code-quality-tools.md",
-    "revisit_trigger": "Untypeable dependency, slow commits, or editor change"
+    "revisit_trigger": "Untypeable dependency, slow commits, or editor change",
+    "commits": [
+      "60cd32d"
+    ]
   },
   {
     "id": "ADR13",
@@ -248,6 +263,25 @@
       "Owner decision 2026-10-09, plan step 0.4"
     ],
     "record": "decisions/ADR13-continuous-integration.md",
-    "revisit_trigger": "New toolchain folders, low Actions minutes, or new major action versions"
+    "revisit_trigger": "New toolchain folders, low Actions minutes, or new major action versions",
+    "commits": [
+      "a5974ac"
+    ]
+  },
+  {
+    "id": "ADR14",
+    "title": "Every change carries a checked record",
+    "status": "accepted",
+    "proposal": "ADR08-13 format; validator checks sections, CR index, registered ADRs and cited commits; commit messages must name ADR/CR; PR template",
+    "requirement_ids": [
+      "R12"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.5"
+    ],
+    "record": "decisions/ADR14-record-system.md",
+    "revisit_trigger": "Record friction slows work, a second contributor joins, or empty records pass"
   }
 ]
