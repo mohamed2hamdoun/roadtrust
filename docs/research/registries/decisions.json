@@ -216,5 +216,22 @@
     ],
     "record": "decisions/ADR11-python-and-packaging.md",
     "revisit_trigger": "Dependency lacks 3.12 wheels, 3.12 nears EOL, or a second Python package appears"
+  },
+  {
+    "id": "ADR12",
+    "title": "Ruff, strict mypy, pre-commit, Hypothesis",
+    "status": "accepted",
+    "proposal": "Ruff lint+format, mypy strict on core and tools, local pre-commit hooks via uv, Hypothesis for property tests",
+    "requirement_ids": [
+      "R02",
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.4"
+    ],
+    "record": "decisions/ADR12-code-quality-tools.md",
+    "revisit_trigger": "Untypeable dependency, slow commits, or editor change"
   }
 ]

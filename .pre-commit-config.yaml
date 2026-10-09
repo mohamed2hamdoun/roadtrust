@@ -1,0 +1,26 @@
+# Local hooks run the tool versions locked in uv.lock, so commits and CI never disagree.
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run --locked ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run --locked ruff format
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy (strict)
+        entry: uv run --locked mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: research-registry
+        name: research registry
+        entry: uv run --locked python tools/research/validate_registry.py
+        language: system
+        files: ^docs/research/
+        pass_filenames: false
