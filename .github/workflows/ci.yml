@@ -14,6 +14,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # full history: cited commits and PR commit messages are checked
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
           version: "0.7.13" # same uv that wrote uv.lock (ADR11)
@@ -24,3 +26,8 @@ jobs:
       - run: uv run mypy
       - run: uv run pytest
       - run: uv run python tools/research/validate_registry.py
+      - name: every PR commit names its ADR/CR (ADR14)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: uv run python tools/check_commit_refs.py "origin/$BASE_REF..HEAD"

@@ -14,7 +14,8 @@ build-backend = "hatchling.build"
 packages = ["core/roadtrust"]
 
 [tool.pytest.ini_options]
-testpaths = ["core/tests"]
+testpaths = ["core/tests", "tools/tests"]
+pythonpath = ["tools"]
 
 [dependency-groups]
 dev = [

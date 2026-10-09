@@ -1,4 +1,7 @@
 # Local hooks run the tool versions locked in uv.lock, so commits and CI never disagree.
+default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [pre-commit]
+
 repos:
   - repo: local
     hooks:
@@ -24,3 +27,8 @@ repos:
         language: system
         files: ^docs/research/
         pass_filenames: false
+      - id: commit-record
+        name: commit names its ADR/CR
+        entry: uv run --locked python tools/check_commit_refs.py --message-file
+        language: system
+        stages: [commit-msg]

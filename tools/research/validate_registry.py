@@ -2,6 +2,7 @@
 
 import json
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -60,13 +61,73 @@ for p in DOCS.rglob("*.md"):
     for source_id in re.findall(r"\bS\d{2}\b", p.read_text()):
         assert source_id in ids["sources"], f"Unknown source {source_id} in {p.name}"
 
+# Record system (ADR14): accepted decisions and change records carry every required section,
+# the change-record index matches the files, and commits cited in the registry exist in git.
+ADR_HEADINGS = (
+    "Decision",
+    "Why",
+    "Pros",
+    "Cons",
+    "Alternatives considered",
+    "How to retest",
+    "How to change or revert",
+    "Revisit trigger",
+)
+CR_HEADINGS = (
+    "Finding and evidence",
+    "What exactly changed",
+    "Why this option",
+    "Pros",
+    "Cons",
+    "Alternatives considered",
+    "How to retest",
+    "How to change or revert",
+)
+
+
+def require_headings(path: Path, headings: tuple[str, ...]) -> None:
+    assert path.is_file(), f"Missing record file: {path.relative_to(ROOT)}"
+    present = set(re.findall(r"^## (.+?)\s*$", path.read_text(), re.M))
+    missing = [h for h in headings if h not in present]
+    assert not missing, f"{path.relative_to(ROOT)} lacks sections: {missing}"
+
+
+registered = set()
+for row in records["decisions"]:
+    if row.get("record"):
+        registered.add(row["record"])
+    if row["status"] == "accepted":
+        assert row.get("record"), f"{row['id']}: accepted without a record file"
+        require_headings(DOCS / row["record"], ADR_HEADINGS)
+adr_files = {f"decisions/{p.name}" for p in (DOCS / "decisions").glob("ADR*.md")}
+assert adr_files <= registered, f"ADR files not in decisions.json: {sorted(adr_files - registered)}"
+
+cr_files = {p.name[:6]: p for p in (DOCS / "changes").glob("CR-*.md")}
+index = (DOCS / "changes" / "README.md").read_text()
+indexed = set(re.findall(r"^\| (CR-\d{3}) \|", index, re.M))
+assert indexed == set(cr_files), f"Change-record index and files differ: {indexed ^ set(cr_files)}"
+for path in cr_files.values():
+    require_headings(path, CR_HEADINGS)
+
+cited = [(row["id"], sha) for row in records["decisions"] for sha in row.get("commits", [])]
+in_git = (
+    subprocess.run(["git", "rev-parse", "--git-dir"], cwd=ROOT, capture_output=True).returncode == 0
+)
+for record_id, sha in cited if in_git else []:
+    found = subprocess.run(
+        ["git", "cat-file", "-e", f"{sha}^{{commit}}"], cwd=ROOT, capture_output=True
+    )
+    assert found.returncode == 0, f"{record_id}: cited commit {sha} not in git (shallow clone?)"
+
 print(
     json.dumps(
         {
             "status": "PASS",
             "records": {k: len(v) for k, v in records.items()},
-            "scope": "IDs, cross-references, local links, baseline feature inventory "
-            "and planned-result honesty",
+            "record_files": {"decisions": len(adr_files), "changes": len(cr_files)},
+            "cited_commits": f"{len(cited)} verified" if in_git else "skipped: not a git checkout",
+            "scope": "IDs, cross-references, local links, baseline feature inventory, "
+            "planned-result honesty, record sections and cited commits",
         },
         indent=2,
     )

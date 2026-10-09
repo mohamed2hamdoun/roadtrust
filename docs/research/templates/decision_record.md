@@ -1,16 +1,40 @@
-# <ADR-ID>: <decision title>
+# ADRnn: <decision in one line>
 
-Status: proposed | accepted | rejected | superseded
+Status: proposed | accepted | rejected | superseded by ADRnn · <date> · Decided by: <name>
+· Plan step <n.n>
 
-- Requirement and decision owner:
-- Current approach and problem:
-- Candidate alternatives (include simplest sufficient baseline):
-- Source IDs and reading depth:
-- Experiment/run IDs and acceptance gates:
-- Actual decision and supporting measurements:
-- Why alternatives were not selected:
-- Security/trust/privacy/operations assumptions:
-- Observed limitations and residual uncertainty:
-- Cost/maintenance/dependency/license implications:
-- Reversal path and revisit trigger:
-- Date, reviewer and superseding decision:
+<!-- File: docs/research/decisions/ADRnn-<slug>.md. Register it in
+registries/decisions.json with "record": "decisions/ADRnn-<slug>.md".
+The validator fails if an accepted decision lacks any heading below. -->
+
+## Decision
+
+What was chosen, with exact versions, settings and file locations.
+
+## Why
+
+The reason in one or two paragraphs. Cite measurements, review chapters and source IDs.
+
+## Pros
+
+## Cons
+
+Include what this decision does not solve and what it costs to maintain.
+
+## Alternatives considered
+
+| Alternative | Why not chosen | When it would be better |
+|---|---|---|
+
+## How to retest
+
+Exact commands and the expected output.
+
+## How to change or revert
+
+What to edit to pick an alternative. The commit that added this file is
+`git log --diff-filter=A --format=%h -- <this file>`; `git revert` that commit to undo it.
+
+## Revisit trigger
+
+The measurable event that should reopen this decision.
