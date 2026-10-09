@@ -1,0 +1,495 @@
+[
+  {
+    "id": "TH01",
+    "name": "Unsigned or forged message injection",
+    "family": "injection",
+    "attacker_types": [
+      "OUT"
+    ],
+    "detection_layer": "authentication",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [],
+    "coverage": "simulate",
+    "adaptive": false,
+    "note": "Datasets are unsigned (ADR17); needs signed Artery/Vanetza traffic with invalid cases."
+  },
+  {
+    "id": "TH02",
+    "name": "Constant or constant-offset position falsification",
+    "family": "data_falsification",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D02",
+      "D03"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (ConstPos, ConstPosOffset); D01 'spoofing'; D03 attack list to verify."
+  },
+  {
+    "id": "TH03",
+    "name": "Random position falsification",
+    "family": "data_falsification",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02",
+      "D03"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (RandomPos, RandomPosOffset)."
+  },
+  {
+    "id": "TH04",
+    "name": "Speed, acceleration or heading falsification",
+    "family": "data_falsification",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D02",
+      "D03"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (ConstSpeed, ConstSpeedOffset, RandomSpeed, RandomSpeedOffset); heading-only falsification to check."
+  },
+  {
+    "id": "TH05",
+    "name": "Eventual stop",
+    "family": "data_falsification",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (EventualStop)."
+  },
+  {
+    "id": "TH06",
+    "name": "Physically consistent false trajectory",
+    "family": "data_falsification",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [],
+    "coverage": "simulate",
+    "adaptive": true,
+    "note": "Adaptive attacker that keeps position, speed and timing mutually consistent to evade residual checks (audit A07). P6 robustness only."
+  },
+  {
+    "id": "TH07",
+    "name": "Data replay",
+    "family": "replay_delay",
+    "attacker_types": [
+      "INS",
+      "OUT"
+    ],
+    "detection_layer": "authentication_and_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DataReplay). Replayed signed messages can still verify; freshness checks matter."
+  },
+  {
+    "id": "TH08",
+    "name": "Delayed messages",
+    "family": "replay_delay",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DelayedMessages). Needs trusted receiver time (audit A03)."
+  },
+  {
+    "id": "TH09",
+    "name": "Disruptive replay of other vehicles' data",
+    "family": "replay_delay",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (Disruptive)."
+  },
+  {
+    "id": "TH10",
+    "name": "Flooding / denial of service from one identity",
+    "family": "flooding_dos",
+    "attacker_types": [
+      "INS",
+      "OUT"
+    ],
+    "detection_layer": "rate_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DoS, DoSRandom, DoSDisruptive); D01 'flooding'. Offline-injected DoS does not show channel effects (source S08)."
+  },
+  {
+    "id": "TH11",
+    "name": "Sybil ghost vehicles (fake traffic)",
+    "family": "sybil",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (GridSybil); D01 'sybil'."
+  },
+  {
+    "id": "TH12",
+    "name": "Sybil combined with replay or DoS",
+    "family": "sybil",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DataReplaySybil, DoSRandomSybil, DoSDisruptiveSybil)."
+  },
+  {
+    "id": "TH13",
+    "name": "Pseudonym abuse to evade history or pose as several vehicles",
+    "family": "sybil",
+    "attacker_types": [
+      "INS"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [],
+    "coverage": "simulate",
+    "adaptive": false,
+    "note": "Rapid or parallel pseudonym use; must be separated from legitimate rotation (BN04)."
+  },
+  {
+    "id": "TH14",
+    "name": "Compromised RSU: false reports, altered or suppressed logs",
+    "family": "infrastructure",
+    "attacker_types": [
+      "RSU"
+    ],
+    "detection_layer": "evidence_integrity",
+    "profiles": [
+      "rsu"
+    ],
+    "dataset_ids": [],
+    "coverage": "simulate",
+    "adaptive": false,
+    "note": "Detected by multi-receiver cross-checks and evidence signing/consensus (P7, experiment E09)."
+  },
+  {
+    "id": "TH15",
+    "name": "Radio jamming",
+    "family": "physical",
+    "attacker_types": [
+      "OUT"
+    ],
+    "detection_layer": "link_degradation",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D05"
+    ],
+    "coverage": "simulate",
+    "adaptive": false,
+    "note": "Reported as degraded reception, not attributed to a sender. D05 gives real benign impairment for contrast; jamming itself simulated."
+  },
+  {
+    "id": "TH16",
+    "name": "GNSS spoofing of honest senders",
+    "family": "physical",
+    "attacker_types": [
+      "OUT"
+    ],
+    "detection_layer": "plausibility_ml",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [],
+    "coverage": "simulate",
+    "adaptive": false,
+    "note": "Sender is honest but its GNSS is spoofed: looks like falsification. Incident must not blame the sender's credentials."
+  },
+  {
+    "id": "TH17",
+    "name": "GNSS spoofing or loss at the receiver (OBU ego data)",
+    "family": "receiver_sensor",
+    "attacker_types": [
+      "SENS"
+    ],
+    "detection_layer": "ego_consistency",
+    "profiles": [
+      "obu"
+    ],
+    "dataset_ids": [
+      "D04"
+    ],
+    "coverage": "simulate",
+    "adaptive": false,
+    "note": "D04 gives real benign GNSS/IMU/speed for consistency baselines; spoofing simulated. Corrupts ADR16 ego cross-checks if undetected."
+  },
+  {
+    "id": "TH18",
+    "name": "Tampering with the receiver's speed or inertial sensors",
+    "family": "receiver_sensor",
+    "attacker_types": [
+      "SENS"
+    ],
+    "detection_layer": "ego_consistency",
+    "profiles": [
+      "obu"
+    ],
+    "dataset_ids": [],
+    "coverage": "gap",
+    "adaptive": false,
+    "note": "No data source identified yet; candidate for own-vehicle bench recording (P4B) with injected faults."
+  },
+  {
+    "id": "BN01",
+    "name": "Hard braking and emergency manoeuvres",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D04"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN02",
+    "name": "Tunnels, urban canyons, GNSS outage or multipath",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D04",
+      "D05"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN03",
+    "name": "High density and channel congestion",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D05"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN04",
+    "name": "Legitimate pseudonym rotation",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D03"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN05",
+    "name": "GNSS noise near decision thresholds",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D02",
+      "D04"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN06",
+    "name": "Stopped vehicles sending unchanged data",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D04"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN07",
+    "name": "Vehicles joining late or leaving range",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  },
+  {
+    "id": "BN08",
+    "name": "Close following and adjacent lanes (nearby honest identities)",
+    "family": "benign_lookalike",
+    "attacker_types": [
+      "ENV"
+    ],
+    "detection_layer": "must_not_alert",
+    "profiles": [
+      "rsu",
+      "obu"
+    ],
+    "dataset_ids": [
+      "D01",
+      "D04"
+    ],
+    "coverage": "dataset",
+    "adaptive": false,
+    "note": "Not an attack. Used to measure false alarms on situations that resemble attacks."
+  }
+]

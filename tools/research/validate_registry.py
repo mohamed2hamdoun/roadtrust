@@ -29,6 +29,7 @@ for kind in [
     "requirements",
     "decisions",
     "failure_cases",
+    "threats",
 ]:
     records[kind], ids[kind] = load(kind)
 
@@ -51,6 +52,17 @@ for kind, rows in records.items():
             assert row["result"] is None and not row["runs"] and not row["limitations_observed"], (
                 f"Unrun experiment {row['id']} contains results"
             )
+
+# Threat catalog (ADR18): closed vocabularies so coverage can be counted reliably.
+THREAT_VOCAB = {
+    "attacker_types": {"OUT", "INS", "RSU", "SENS", "ENV"},
+    "profiles": {"rsu", "obu"},
+}
+for row in records["threats"]:
+    for field, allowed in THREAT_VOCAB.items():
+        assert set(row[field]) <= allowed, f"threats/{row['id']}: bad {field} {row[field]}"
+    assert row["coverage"] in {"dataset", "simulate", "gap"}, f"threats/{row['id']}: coverage"
+    assert row["coverage"] != "dataset" or row["dataset_ids"], f"threats/{row['id']}: no dataset"
 
 names = [f["name"] for f in records["features"]]
 assert len(names) == 17 and len(set(names)) == 17, "Baseline feature inventory incomplete"
