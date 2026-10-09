@@ -2,7 +2,7 @@
   {
     "id": "ADR01",
     "title": "Initial product boundary",
-    "status": "proposed",
+    "status": "superseded",
     "proposal": "Receiver-side monitoring platform with separate CAN/perception tracks",
     "requirement_ids": [
       "R01",
@@ -17,7 +17,8 @@
       "E03"
     ],
     "selection_evidence": [],
-    "revisit_trigger": "Confirm actual operator and target hardware."
+    "revisit_trigger": "Confirm actual operator and target hardware.",
+    "superseded_by": "ADR16"
   },
   {
     "id": "ADR02",
@@ -300,5 +301,32 @@
     ],
     "record": "decisions/ADR15-storage-and-compute.md",
     "revisit_trigger": "Data over 60 GB, free space under 40 GB, RAM limits, or lab access changes"
+  },
+  {
+    "id": "ADR16",
+    "title": "Two deployment profiles (RSU, OBU), two user roles, monitoring only",
+    "status": "accepted",
+    "proposal": "Shared core with rsu/obu profiles; optional OBU ego-sensor input; OBU reports plus lab-only driver warning; one role-based app for operators and researchers; replay then lab bench",
+    "requirement_ids": [
+      "R01",
+      "R05",
+      "R10",
+      "R12",
+      "R13",
+      "R14"
+    ],
+    "source_ids": [
+      "S02",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E03",
+      "E13"
+    ],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 1.1"
+    ],
+    "record": "decisions/ADR16-deployment-targets-and-users.md",
+    "revisit_trigger": "No OBU ego data available, driver budget unreachable, field-pilot offer, or capacity for two profiles lost"
   }
 ]

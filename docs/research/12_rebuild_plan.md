@@ -103,10 +103,10 @@ alongside P5–P6. GUI research and design (9.1–9.3) can start right after P1.
 
 | Step | Do | Output |
 |---|---|---|
-| 1.1 | Confirm first deployment target. Proposed: roadside-unit (RSU) edge monitor, lab replay first. | ADR01 accepted |
+| 1.1 | Confirm first deployment target. **Decided:** two profiles on one core, RSU and on-vehicle (OBU, with optional ego-sensor input and a lab-only driver warning); road-authority operators and researchers in one role-based app; replay, then lab bench; monitor and alert only ([ADR16](decisions/ADR16-deployment-targets-and-users.md)). | ADR16 (supersedes ADR01) |
 | 1.2 | Choose V2X profile by target region: EU-style C-ITS (ETSI CAM/DENM, TS 103 097 security) or US-style (SAE J2735 BSM, IEEE 1609.2). Radio: ITS-G5/802.11p vs LTE-V2X PC5 vs NR-V2X. | ADR: message and radio profile |
 | 1.3 | Threat catalog: attacker types (outsider without credentials, insider with valid credentials, compromised RSU, compromised sensor) × attacks (position/speed falsification, replay, DoS/flooding, Sybil, eventual stop, data replay, GNSS spoofing). Map each to the dataset that contains it. | `registries/threats.json` |
-| 1.4 | Set measurable budgets: minimum event recall, maximum false incidents per receiver-hour, p99 latency, memory and CPU on target hardware. **These numbers are yours to choose.** | Updated requirements R04/R11 |
+| 1.4 | Set measurable budgets: minimum event recall, maximum false incidents per receiver-hour, p99 latency, memory and CPU on target hardware, set per profile (RSU, OBU) plus a separate, stricter false-alarm budget for driver warnings. **These numbers are yours to choose.** | Updated requirements R04/R11 |
 | 1.5 | Verify one end-to-end signal path (sensor → ECU → gateway → OBU → radio → RSU → detector). Mark each field as measured by receiver, claimed by sender, or simulator-only. | Signal and trust map |
 
 ## P2 — Literature review
@@ -137,7 +137,7 @@ with decision implications and open experiments, not a list of paper summaries.
 
 | Step | Do | Output |
 |---|---|---|
-| 3.1 | Receiver-observation schema v1 (Pydantic models + exported JSON Schema), using the envelope from [03](03_vehicle_and_failures.md): identity, time, payload, radio/auth, quality, lineage. | `core/roadtrust/schema/` |
+| 3.1 | Receiver-observation schema v1 (Pydantic models + exported JSON Schema), using the envelope from [03](03_vehicle_and_failures.md): identity, time, payload, radio/auth, quality, lineage, plus receiver type (`rsu`/`obu`) and an optional ego-sensor channel (ADR16). | `core/roadtrust/schema/` |
 | 3.2 | Units, coordinates and clocks: SI units, true-north heading, integer-nanosecond receiver monotonic time, separate UTC with uncertainty, explicit "unavailable" values. | Conventions doc + ADR |
 | 3.3 | Separate oracle channel for labels, attacker IDs and simulator truth. | Schema + tests that block it from features |
 | 3.4 | Storage: raw files kept immutable; normalized Parquet; JSON manifest with hashes per dataset version. | ADR: storage format (alternatives: CSV, a database) |
@@ -163,7 +163,7 @@ license, version, checksums, size, fields, labels, clocks, identity semantics, l
 
 | Step | Do |
 |---|---|
-| 4B.1 | Choose passive hardware: an OBD-II/CAN logger (for example CANable, PEAK, Kvaser, comma panda) plus phone or external GNSS. ADR with cost, timestamp quality and driver support. |
+| 4B.1 | This recording is also the main source of OBU ego-sensor data (ADR16). Choose passive hardware: an OBD-II/CAN logger (for example CANable, PEAK, Kvaser, comma panda) plus phone or external GNSS. ADR with cost, timestamp quality and driver support. |
 | 4B.2 | **Read-only recording only.** No frame injection on a real vehicle. Attacks happen only on virtual CAN (`vcan`) or a bench. |
 | 4B.3 | Record benign drives with a written protocol (route, time, weather, vehicle). Decode with a DBC file only where you have the right to use it. |
 | 4B.4 | Adapter → schema v1, data card, privacy review (location traces are personal data). |
@@ -199,7 +199,7 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 
 | Step | Do |
 |---|---|
-| 6.1 | Freeze the protocol from [05](05_experiments.md) before any tuning: splits, budgets from 1.4, metrics (event recall, false incidents/hour, p99 latency, memory), tuning budget per model, seeds. |
+| 6.1 | Freeze the protocol from [05](05_experiments.md) before any tuning: splits, budgets from 1.4, metrics (event recall, false incidents/hour, p99 latency, memory), tuning budget per model, seeds. Every result is reported per deployment profile (RSU, OBU). |
 | 6.2 | One benchmark harness: config per model, same inputs, a saved result bundle (code commit, data hashes, predictions, timings). Experiment tracking ADR (MLflow vs plain manifests). |
 | 6.3 | Wave 1: constant baseline, explicit rules, logistic regression, small tree, Random Forest, gradient boosting (XGBoost or LightGBM), plus the frozen v0.3.0 model as a reference row. |
 | 6.4 | Wave 2, only for gaps wave 1 exposes: Isolation Forest, One-Class SVM, Kalman-filter innovation checks, autoencoder, GRU/temporal CNN. |
@@ -238,7 +238,7 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 | 9.1 | Operator research: write the E13 tasks, sketch wireframes for the 8 screens in [08](08_application_and_gui.md). Can start right after P1. |
 | 9.2 | Design system: color and type tokens, components, light/dark, accessibility (keyboard, contrast, not color-only alerts). |
 | 9.3 | Stack ADR. Proposed React + TypeScript + Vite, MapLibre for maps, a client generated from the OpenAPI spec. Alternatives: Svelte, Next.js, keeping Streamlit for research only. |
-| 9.4 | Build order: Operations overview → Incident explorer and detail → Feature Inspector → Evidence verification → Experiments → Simulation lab → Administration. |
+| 9.4 | Build order: Operations overview → Incident explorer and detail → Feature Inspector → Evidence verification → Experiments → Simulation lab → Administration, plus the OBU driver-warning prototype (lab/simulator only, ADR16). |
 | 9.5 | Playwright end-to-end tests including offline, stale and permission-denied states; usability test with real users. |
 
 ## P10 — Deployment and pilot
@@ -254,7 +254,7 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 
 ## Decisions needed from you before P1 can close
 
-1. First deployment target (RSU edge monitor proposed).
+1. ~~First deployment target~~ — decided in [ADR16](decisions/ADR16-deployment-targets-and-users.md).
 2. Target region, which decides the V2X message and radio profile.
 3. Team size, weekly hours and any deadline (competition round, graduation, paper).
 4. ~~Storage and compute~~ — decided in [ADR15](decisions/ADR15-storage-and-compute.md).

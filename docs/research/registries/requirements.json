@@ -70,5 +70,17 @@
     "requirement": "Conclusions name the data and operational conditions supporting them",
     "acceptance_evidence": "Limitations and claim-to-evidence register",
     "status": "proposed"
+  },
+  {
+    "id": "R13",
+    "requirement": "RSU and on-vehicle (OBU) profiles share one detection core; every evaluation reports results per profile; the OBU works with and without ego-sensor data",
+    "acceptance_evidence": "Schema receiver-type field and ego channel with tests; per-profile benchmark tables",
+    "status": "accepted"
+  },
+  {
+    "id": "R14",
+    "requirement": "Driver warnings meet a separate, stricter false-alarm budget and stay lab/simulator-only until an HMI safety review is recorded",
+    "acceptance_evidence": "Driver-budget result in P6; recorded HMI review decision before any road use",
+    "status": "accepted"
   }
 ]
