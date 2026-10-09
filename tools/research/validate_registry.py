@@ -31,6 +31,7 @@ for kind in [
     "failure_cases",
     "threats",
     "targets",
+    "signal_fields",
 ]:
     records[kind], ids[kind] = load(kind)
 
@@ -71,6 +72,25 @@ for row in records["targets"]:
     assert isinstance(row["value"], int | float), f"targets/{row['id']}: value"
     assert set(row["applies_to"]) <= THREAT_VOCAB["profiles"], f"targets/{row['id']}: profile"
     assert row["status"] in {"provisional", "accepted"}, f"targets/{row['id']}: status"
+
+# Signal and trust map (ADR20): simulator truth and detector outputs can never be inputs.
+TRUST = {
+    "claimed",
+    "measured",
+    "measured_local",
+    "derived",
+    "verified",
+    "oracle",
+    "metadata",
+    "output",
+}
+USE = {"allowed", "caution", "key_only", "forbidden"}
+for row in records["signal_fields"]:
+    assert row["trust"] in TRUST and row["feature_use"] in USE, f"signal_fields/{row['id']}: vocab"
+    if row["trust"] in {"oracle", "output"}:
+        assert row["feature_use"] == "forbidden", (
+            f"signal_fields/{row['id']}: {row['trust']} usable"
+        )
 
 names = [f["name"] for f in records["features"]]
 assert len(names) == 17 and len(set(names)) == 17, "Baseline feature inventory incomplete"
