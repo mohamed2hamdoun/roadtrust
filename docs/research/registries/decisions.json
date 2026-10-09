@@ -199,5 +199,22 @@
     ],
     "record": "decisions/ADR10-branching-and-prs.md",
     "revisit_trigger": "PR overhead slows work, or a second developer joins"
+  },
+  {
+    "id": "ADR11",
+    "title": "Python 3.12 with uv, root project, code in core/",
+    "status": "accepted",
+    "proposal": "requires-python ==3.12.*; uv lockfile; hatchling builds core/roadtrust",
+    "requirement_ids": [
+      "R02",
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.4"
+    ],
+    "record": "decisions/ADR11-python-and-packaging.md",
+    "revisit_trigger": "Dependency lacks 3.12 wheels, 3.12 nears EOL, or a second Python package appears"
   }
 ]
