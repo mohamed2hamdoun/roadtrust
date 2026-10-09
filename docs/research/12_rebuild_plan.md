@@ -23,7 +23,7 @@ wasted effort. Two things from the old system still matter:
 | Keep | Drop |
 |---|---|
 | Research dossier, registries, templates, requirements R01–R12 | Single-receiver toy simulator as the main data source |
-| Old system, frozen at tag `v0.3.0-hackathon`, as a reference | Streamlit app that drives the pipeline directly |
+| Old system, frozen in the `Cyberthorn-project` repo at tag `v0.3.0-hackathon`, as a reference | Streamlit app that drives the pipeline directly |
 | Issue register and audit findings, as lessons learned | Local JSON hash chain as the evidence store |
 | The receiver → feature → detect → explain → evidence idea | The 17-feature schema tied to a 2-D toy world |
 
@@ -92,7 +92,7 @@ alongside P5–P6. GUI research and design (9.1–9.3) can start right after P1.
 
 | Step | Do | Output |
 |---|---|---|
-| 0.1 | Tag current `main` as `v0.3.0-hackathon`. Leave its code untouched. | Git tag |
+| 0.1 | Tag `Cyberthorn-project` `main` as `v0.3.0-hackathon`. Leave its code untouched. **Done:** local tag on `b4c4a03`, not pushed. | Git tag |
 | 0.2 | Regenerate data and retrain once from the locked environment. Compare against archived `evaluation.json`. Record the predict_proba-vs-vote finding (56 of 32,297 test decisions flip at threshold 0.35). | Reproduction record (experiment E01) |
 | 0.3 | Choose the repository layout. Proposed monorepo: `core/` (Python package `roadtrust`), `sim/`, `chain/`, `web/`, `deploy/`, `docs/`; old package stays until deleted in P10. | ADR: repo layout (alternative: separate repos) |
 | 0.4 | Tooling: uv, ruff, pytest + hypothesis, pre-commit, GitHub Actions CI running tests and `tools/research/validate_registry.py`. | CI green on empty skeleton |
@@ -248,7 +248,7 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 | 10.1 | Docker Compose staging stack: service, workers, Postgres, chain nodes, web, monitoring. TLS, secrets, backups and a rehearsed restore. |
 | 10.2 | CI/CD with signed model promotion and rollback. |
 | 10.3 | Shadow pilot: replayed or lab RSU traffic, monitored for a fixed period with no effect on any vehicle. |
-| 10.4 | Operations report and limitations register: what was proven, under which conditions, and what was not. Delete the old package. |
+| 10.4 | Operations report and limitations register: what was proven, under which conditions, and what was not. Decide whether to archive the old `Cyberthorn-project` repo. |
 
 ---
 
