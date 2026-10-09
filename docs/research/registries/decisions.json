@@ -151,5 +151,53 @@
     ],
     "selection_evidence": [],
     "revisit_trigger": "Select versions after contract/load/usability spike."
+  },
+  {
+    "id": "ADR08",
+    "title": "Separate repository for the rebuild",
+    "status": "accepted",
+    "proposal": "New private repo mohamed2hamdoun/roadtrust; hackathon code stays in Cyberthorn-project",
+    "requirement_ids": [
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.3"
+    ],
+    "record": "decisions/ADR08-separate-repository.md",
+    "revisit_trigger": "Publishing, outside collaborators, or a single-history requirement"
+  },
+  {
+    "id": "ADR09",
+    "title": "Monorepo, folders added per phase",
+    "status": "accepted",
+    "proposal": "One repo: docs, tools, core, sim, chain, web, deploy; each folder created when its phase starts",
+    "requirement_ids": [
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.3"
+    ],
+    "record": "decisions/ADR09-monorepo-layout.md",
+    "revisit_trigger": "A part gets its own owner or release cycle, or unrelated CI becomes costly"
+  },
+  {
+    "id": "ADR10",
+    "title": "One branch and PR per plan step",
+    "status": "accepted",
+    "proposal": "Branch p<phase>/<step>-<slug> per step, draft PR into main, merge commits so recorded hashes survive",
+    "requirement_ids": [
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.3"
+    ],
+    "record": "decisions/ADR10-branching-and-prs.md",
+    "revisit_trigger": "PR overhead slows work, or a second developer joins"
   }
 ]
