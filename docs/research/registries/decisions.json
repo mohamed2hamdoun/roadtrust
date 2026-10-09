@@ -328,5 +328,32 @@
     ],
     "record": "decisions/ADR16-deployment-targets-and-users.md",
     "revisit_trigger": "No OBU ego data available, driver budget unreachable, field-pilot offer, or capacity for two profiles lost"
+  },
+  {
+    "id": "ADR17",
+    "title": "ETSI CAM first, 802.11p first, authentication separate from ML",
+    "status": "accepted",
+    "proposal": "ETSI C-ITS CAM adapter first (BSM later); 802.11p/ITS-G5 simulation and bench first, cellular V2X via later spike; TS 103 097 verification result recorded next to, never inside, the ML score",
+    "requirement_ids": [
+      "R01",
+      "R06",
+      "R09",
+      "R15"
+    ],
+    "source_ids": [
+      "S03",
+      "S04",
+      "S08",
+      "S19"
+    ],
+    "experiment_ids": [
+      "E03",
+      "E10"
+    ],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 1.2"
+    ],
+    "record": "decisions/ADR17-message-radio-and-authentication.md",
+    "revisit_trigger": "BSM-region partner, C-V2X-only lab hardware, or no signed traffic obtainable"
   }
 ]

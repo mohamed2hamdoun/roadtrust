@@ -104,7 +104,7 @@ alongside P5–P6. GUI research and design (9.1–9.3) can start right after P1.
 | Step | Do | Output |
 |---|---|---|
 | 1.1 | Confirm first deployment target. **Decided:** two profiles on one core, RSU and on-vehicle (OBU, with optional ego-sensor input and a lab-only driver warning); road-authority operators and researchers in one role-based app; replay, then lab bench; monitor and alert only ([ADR16](decisions/ADR16-deployment-targets-and-users.md)). | ADR16 (supersedes ADR01) |
-| 1.2 | Choose V2X profile by target region: EU-style C-ITS (ETSI CAM/DENM, TS 103 097 security) or US-style (SAE J2735 BSM, IEEE 1609.2). Radio: ITS-G5/802.11p vs LTE-V2X PC5 vs NR-V2X. | ADR: message and radio profile |
+| 1.2 | Choose V2X profile by target region: EU-style C-ITS (ETSI CAM/DENM, TS 103 097 security) or US-style (SAE J2735 BSM, IEEE 1609.2). Radio: ITS-G5/802.11p vs LTE-V2X PC5 vs NR-V2X. **Decided:** ETSI CAM first (BSM adapter later), 802.11p/ITS-G5 first (cellular via a later spike), authentication checked separately from ML ([ADR17](decisions/ADR17-message-radio-and-authentication.md)). | ADR17 |
 | 1.3 | Threat catalog: attacker types (outsider without credentials, insider with valid credentials, compromised RSU, compromised sensor) × attacks (position/speed falsification, replay, DoS/flooding, Sybil, eventual stop, data replay, GNSS spoofing). Map each to the dataset that contains it. | `registries/threats.json` |
 | 1.4 | Set measurable budgets: minimum event recall, maximum false incidents per receiver-hour, p99 latency, memory and CPU on target hardware, set per profile (RSU, OBU) plus a separate, stricter false-alarm budget for driver warnings. **These numbers are yours to choose.** | Updated requirements R04/R11 |
 | 1.5 | Verify one end-to-end signal path (sensor → ECU → gateway → OBU → radio → RSU → detector). Mark each field as measured by receiver, claimed by sender, or simulator-only. | Signal and trust map |
@@ -137,7 +137,7 @@ with decision implications and open experiments, not a list of paper summaries.
 
 | Step | Do | Output |
 |---|---|---|
-| 3.1 | Receiver-observation schema v1 (Pydantic models + exported JSON Schema), using the envelope from [03](03_vehicle_and_failures.md): identity, time, payload, radio/auth, quality, lineage, plus receiver type (`rsu`/`obu`) and an optional ego-sensor channel (ADR16). | `core/roadtrust/schema/` |
+| 3.1 | Receiver-observation schema v1 (Pydantic models + exported JSON Schema), using the envelope from [03](03_vehicle_and_failures.md): identity, time, payload, radio/auth, quality, lineage, plus receiver type (`rsu`/`obu`) and an optional ego-sensor channel (ADR16), and the seven-value authentication result with revocation freshness (ADR17). | `core/roadtrust/schema/` |
 | 3.2 | Units, coordinates and clocks: SI units, true-north heading, integer-nanosecond receiver monotonic time, separate UTC with uncertainty, explicit "unavailable" values. | Conventions doc + ADR |
 | 3.3 | Separate oracle channel for labels, attacker IDs and simulator truth. | Schema + tests that block it from features |
 | 3.4 | Storage: raw files kept immutable; normalized Parquet; JSON manifest with hashes per dataset version. | ADR: storage format (alternatives: CSV, a database) |
@@ -255,7 +255,7 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 ## Decisions needed from you before P1 can close
 
 1. ~~First deployment target~~ — decided in [ADR16](decisions/ADR16-deployment-targets-and-users.md).
-2. Target region, which decides the V2X message and radio profile.
+2. ~~Message and radio profile~~ — decided in [ADR17](decisions/ADR17-message-radio-and-authentication.md).
 3. Team size, weekly hours and any deadline (competition round, graduation, paper).
 4. ~~Storage and compute~~ — decided in [ADR15](decisions/ADR15-storage-and-compute.md).
 5. Whether to record your own vehicle data (P4B) and with which car.
