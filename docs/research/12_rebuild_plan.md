@@ -92,10 +92,10 @@ alongside P5–P6. GUI research and design (9.1–9.3) can start right after P1.
 
 | Step | Do | Output |
 |---|---|---|
-| 0.1 | Tag `Cyberthorn-project` `main` as `v0.3.0-hackathon`. Leave its code untouched. **Done:** local tag on `b4c4a03`, not pushed. | Git tag |
+| 0.1 | Tag `Cyberthorn-project` `main` as `v0.3.0-hackathon`. Leave its code untouched. **Done:** tag on `b4c4a03`, pushed to the `Cyberthorn-project` GitHub repo. | Git tag |
 | 0.2 | Regenerate data and retrain once from the locked environment. Compare against archived `evaluation.json`. Record the predict_proba-vs-vote finding (56 of 32,297 test decisions flip at threshold 0.35). **Done:** exact match, see [E01](reproduction/E01_v0.3.0_reproduction.md). | Reproduction record (experiment E01) |
 | 0.3 | Repository and layout. **Decided:** new private repo `roadtrust` ([ADR08](decisions/ADR08-separate-repository.md)); one repo with `core/` (Python package `roadtrust`), `sim/`, `chain/`, `web/`, `deploy/`, each created when its phase starts ([ADR09](decisions/ADR09-monorepo-layout.md)); one branch and PR per step ([ADR10](decisions/ADR10-branching-and-prs.md)). | ADR08, ADR09, ADR10 |
-| 0.4 | Tooling: uv, ruff, pytest + hypothesis, pre-commit, GitHub Actions CI running tests and `tools/research/validate_registry.py`. | CI green on empty skeleton |
+| 0.4 | Tooling: uv, ruff, pytest + hypothesis, pre-commit, GitHub Actions CI running tests and `tools/research/validate_registry.py`. **Decided:** Python 3.12 ([ADR11](decisions/ADR11-python-and-packaging.md)), Ruff + strict mypy + pre-commit + Hypothesis ([ADR12](decisions/ADR12-code-quality-tools.md)), GitHub Actions ([ADR13](decisions/ADR13-continuous-integration.md)). | CI green on empty skeleton |
 | 0.5 | Change-record and ADR templates and an index; every later commit links one. | `docs/research/changes/` |
 | 0.6 | Storage check. **Only ~27 GB free.** Datasets, Docker images and simulator builds need more. Decide: external SSD, cleanup, or cloud/lab machine. | ADR: compute and storage |
 

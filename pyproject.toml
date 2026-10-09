@@ -1,0 +1,42 @@
+[project]
+name = "roadtrust"
+version = "0.0.0"
+description = "Receiver-side V2X misbehavior detection with explanations and verifiable evidence"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["core/roadtrust"]
+
+[tool.pytest.ini_options]
+testpaths = ["core/tests"]
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.168.5",
+    "mypy>=2.4.0",
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+# Research docs are prose; keep formatters out of them.
+extend-exclude = ["docs"]
+
+[tool.ruff.lint]
+# pycodestyle, pyflakes, isort, bugbear, pyupgrade, simplify, ruff-specific
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["core", "tools"]
+

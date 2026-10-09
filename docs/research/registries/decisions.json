@@ -199,5 +199,55 @@
     ],
     "record": "decisions/ADR10-branching-and-prs.md",
     "revisit_trigger": "PR overhead slows work, or a second developer joins"
+  },
+  {
+    "id": "ADR11",
+    "title": "Python 3.12 with uv, root project, code in core/",
+    "status": "accepted",
+    "proposal": "requires-python ==3.12.*; uv lockfile; hatchling builds core/roadtrust",
+    "requirement_ids": [
+      "R02",
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.4"
+    ],
+    "record": "decisions/ADR11-python-and-packaging.md",
+    "revisit_trigger": "Dependency lacks 3.12 wheels, 3.12 nears EOL, or a second Python package appears"
+  },
+  {
+    "id": "ADR12",
+    "title": "Ruff, strict mypy, pre-commit, Hypothesis",
+    "status": "accepted",
+    "proposal": "Ruff lint+format, mypy strict on core and tools, local pre-commit hooks via uv, Hypothesis for property tests",
+    "requirement_ids": [
+      "R02",
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.4"
+    ],
+    "record": "decisions/ADR12-code-quality-tools.md",
+    "revisit_trigger": "Untypeable dependency, slow commits, or editor change"
+  },
+  {
+    "id": "ADR13",
+    "title": "GitHub Actions CI on every pull request",
+    "status": "accepted",
+    "proposal": "Locked sync, ruff, mypy, pytest and registry validator on ubuntu-latest; actions pinned by commit hash",
+    "requirement_ids": [
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.4"
+    ],
+    "record": "decisions/ADR13-continuous-integration.md",
+    "revisit_trigger": "New toolchain folders, low Actions minutes, or new major action versions"
   }
 ]
