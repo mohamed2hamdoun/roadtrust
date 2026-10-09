@@ -167,5 +167,21 @@
     ],
     "record": "decisions/ADR08-separate-repository.md",
     "revisit_trigger": "Publishing, outside collaborators, or a single-history requirement"
+  },
+  {
+    "id": "ADR09",
+    "title": "Monorepo, folders added per phase",
+    "status": "accepted",
+    "proposal": "One repo: docs, tools, core, sim, chain, web, deploy; each folder created when its phase starts",
+    "requirement_ids": [
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.3"
+    ],
+    "record": "decisions/ADR09-monorepo-layout.md",
+    "revisit_trigger": "A part gets its own owner or release cycle, or unrelated CI becomes costly"
   }
 ]
