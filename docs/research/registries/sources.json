@@ -1,0 +1,312 @@
+[
+  {
+    "id": "S01",
+    "title": "Linux Kernel — SocketCAN",
+    "url": "https://docs.kernel.org/networking/can.html",
+    "kind": "official documentation",
+    "review_status": "Relevant documentation inspected",
+    "summary": "Linux exposes CAN interfaces through its networking API, including virtual interfaces.",
+    "project_implication": "CAN adapter design; virtual CAN cannot validate electrical or arbitration behavior.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S02",
+    "title": "3GPP TS 23.287 v16.6.0 / ETSI TS 123 287",
+    "url": "https://www.etsi.org/deliver/etsi_ts/123200_123299/123287/16.06.00_60/ts_123287v160600p.pdf",
+    "kind": "standard, Release 16",
+    "review_status": "Relevant architecture and coverage clauses inspected",
+    "summary": "Distinguishes PC5 direct communications from network-based V2X and specifies provisioning constraints.",
+    "project_implication": "Use for link/failure taxonomy; historical edition, not a claim of current regional compliance.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S03",
+    "title": "ETSI EN 302 637-2 v1.4.1 — Cooperative Awareness",
+    "url": "https://www.etsi.org/deliver/etsi_en/302600_302699/30263702/01.04.01_60/en_30263702v010401p.pdf",
+    "kind": "standard, 2019",
+    "review_status": "Relevant message/heading clauses inspected",
+    "summary": "Defines CAM fields and message behavior; heading uses true north.",
+    "project_implication": "A decoder must preserve units, unavailable codes and coordinate conventions; freeze the required profile.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S04",
+    "title": "ETSI TS 103 097 v2.1.1 — Security header and certificates",
+    "url": "https://www.etsi.org/deliver/etsi_ts/103000_103099/103097/02.01.01_60/ts_103097v020101p.pdf",
+    "kind": "standard, 2021",
+    "review_status": "Search screening only; full review pending",
+    "summary": "Security headers and certificate formats are a separate layer from detecting misleading telemetry.",
+    "project_implication": "A newer 2026 edition appeared in the ETSI publication listing; verify the target edition before implementation.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S05",
+    "title": "AUTOSAR R24-11 — Requirements on Secure Onboard Communication",
+    "url": "https://www.autosar.org/fileadmin/standards/R24-11/CP/AUTOSAR_CP_RS_SecureOnboardCommunication.pdf",
+    "kind": "official standard requirements",
+    "review_status": "Search screening only; full text fetch unavailable",
+    "summary": "SecOC is relevant to authenticated, fresh in-vehicle messages.",
+    "project_implication": "Candidate reference for the separate CAN track; not evidence of implementation or conformance.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S06",
+    "title": "van der Heijden et al. — VeReMi (2018)",
+    "url": "https://arxiv.org/abs/1804.06701",
+    "kind": "research paper",
+    "review_status": "Abstract and official family overview screened",
+    "summary": "Introduces reproducible simulated misbehavior data for comparable evaluation.",
+    "project_implication": "Historical benchmark and backward citation starting point; full paper extraction pending.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S07",
+    "title": "VeReMi Extension (2020) — official dataset overview",
+    "url": "https://veremi-dataset.github.io/veremi-extension",
+    "kind": "dataset owner documentation",
+    "review_status": "Documentation inspected",
+    "summary": "Adds simulated sensor errors and more misbehavior variants to the original benchmark.",
+    "project_implication": "Candidate external benchmark; do not describe it as field-recorded attack traffic.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S08",
+    "title": "VeReMi NextGen (2026) — official overview",
+    "url": "https://veremi-dataset.github.io/veremi-nextgen",
+    "kind": "dataset owner documentation",
+    "review_status": "Documentation inspected",
+    "summary": "Provides simulated CAM logs, official splits, pseudonyms and a newer scenario setup. Attacks are applied after baseline simulation.",
+    "project_implication": "Candidate main benchmark; offline injected DoS does not by itself demonstrate live channel disruption.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S09",
+    "title": "VeReMi NextGen — message format",
+    "url": "https://github.com/VeReMi-dataset/VeReMi-NextGen/blob/main/Documentation/README.md",
+    "kind": "dataset owner schema",
+    "review_status": "Relevant schema inspected",
+    "summary": "Documents rcvTime/sendTime in nanoseconds, sender_alias, sender_id and sender/receiver measurements.",
+    "project_implication": "Use receiver-visible pseudonyms; block hidden identity, labels, driver profiles and oracle metadata from model inputs.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S10",
+    "title": "nuScenes — CAN bus expansion",
+    "url": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/can_bus/README.md",
+    "kind": "dataset owner documentation",
+    "review_status": "Relevant fields/units inspected",
+    "summary": "Real scene telemetry includes timestamped pose, IMU, steering and vehicle-monitor measurements; documentation calls this expansion experimental.",
+    "project_implication": "Use for benign motion realism, not as a ready-made labelled V2X cyberattack benchmark.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S11",
+    "title": "Fraunhofer HHI — BerlinV2X",
+    "url": "https://github.com/fraunhoferhhi/BerlinV2X",
+    "kind": "dataset owner documentation",
+    "review_status": "Measurement table inspected",
+    "summary": "Real cellular/sidelink radio measurements and GPS tracks are available.",
+    "project_implication": "Use for benign communication impairment characterization; exact timing semantics and attack-label availability require a sample audit.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S12",
+    "title": "ORNL — A comprehensive guide to CAN IDS data and ROAD",
+    "url": "https://www.ornl.gov/publications/a-comprehensive-guide-to-can-ids-data-and-introduction-of-the-road-dataset/",
+    "kind": "primary research publication page",
+    "review_status": "Abstract inspected",
+    "summary": "ROAD combines real vehicle CAN captures and attacks with simulated masquerade cases, from one vehicle.",
+    "project_implication": "Evaluate CAN separately; real data and real attacks are different labels.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S13",
+    "title": "ROAD dataset release",
+    "url": "https://zenodo.org/records/10462796",
+    "kind": "author dataset release",
+    "review_status": "Release description screened",
+    "summary": "Release includes ambient and attack captures and points to the associated paper.",
+    "project_implication": "Pin files, license, checksums and attack provenance before use.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S14",
+    "title": "AIR-THU — DAIR-V2X / V2X-Seq",
+    "url": "https://github.com/AIR-THU/DAIR-V2X",
+    "kind": "dataset owner documentation",
+    "review_status": "Overview inspected",
+    "summary": "Real cooperative perception and trajectory resources are provided.",
+    "project_implication": "Optional perception track; image/point-cloud labels are not message-attack labels.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S15",
+    "title": "Veins — framework and founding paper link",
+    "url": "https://veins.car2x.org/",
+    "kind": "official project documentation",
+    "review_status": "Architecture description inspected",
+    "summary": "Couples OMNeT++ communication models with SUMO mobility.",
+    "project_implication": "Candidate network-first simulator; validate the selected radio model rather than assuming PC5 support.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S16",
+    "title": "CARLA — SUMO co-simulation",
+    "url": "https://carla.readthedocs.io/en/latest/adv_sumo/",
+    "kind": "official documentation",
+    "review_status": "Co-simulation workflow inspected",
+    "summary": "Provides a documented CARLA/SUMO synchronization workflow.",
+    "project_implication": "Useful for sensor/driving scenarios; extra radio integration still needs engineering.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S17",
+    "title": "CARLA — packaged quick start",
+    "url": "https://carla.readthedocs.io/en/latest/start_quickstart/",
+    "kind": "official documentation",
+    "review_status": "Platform requirements inspected",
+    "summary": "The inspected package guide lists Windows/Ubuntu and recommends a dedicated GPU.",
+    "project_implication": "Do not assume the user’s Apple Silicon Mac can run the chosen package natively; verify a lab host and exact release first.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S18",
+    "title": "Eclipse MOSAIC",
+    "url": "https://eclipse.dev/mosaic/",
+    "kind": "official project documentation",
+    "review_status": "Coupling overview inspected",
+    "summary": "A framework for coupling mobility, application and communication simulators.",
+    "project_implication": "Candidate when reproducing NextGen; coupling support does not mean every version combination works.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S19",
+    "title": "CTTC — 5G-LENA",
+    "url": "https://5g-lena.cttc.es/",
+    "kind": "official project documentation",
+    "review_status": "Overview inspected",
+    "summary": "An ns-3-based 5G NR simulation project with related NR-V2X work.",
+    "project_implication": "A PC5 study must verify a compatible sidelink branch/module and its model assumptions; generic NR support is insufficient.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S20",
+    "title": "Hyperledger Fabric — Ordering service",
+    "url": "https://hyperledger-fabric.readthedocs.io/en/latest/orderer/ordering_service.html",
+    "kind": "official documentation",
+    "review_status": "Consensus/commit sections inspected",
+    "summary": "Documents crash-tolerant Raft and BFT ordering introduced in Fabric v3.0, and the need to check peer commit validity.",
+    "project_implication": "Select according to the adversary model; receipt acknowledgement is not committed evidence.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S21",
+    "title": "Hyperledger Fabric — Private data",
+    "url": "https://hyperledger-fabric.readthedocs.io/en/latest/private-data/private-data.html",
+    "kind": "official documentation",
+    "review_status": "Private collection overview inspected",
+    "summary": "Collections restrict which organizations hold private application data.",
+    "project_implication": "Candidate privacy mechanism, not automatic protection for all metadata or traffic.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S22",
+    "title": "Besu — QBFT",
+    "url": "https://docs.besu-eth.org/private-networks/how-to/configure/consensus/qbft",
+    "kind": "official documentation",
+    "review_status": "Validator/quorum sections inspected",
+    "summary": "Permissioned validators finalize blocks using QBFT; insufficient participating validators stall progress.",
+    "project_implication": "Candidate EVM network; test loss of quorum, governance and separate administrative control.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S23",
+    "title": "Arp et al. — Dos and Don’ts of ML in Computer Security (USENIX Security 2022)",
+    "url": "https://www.usenix.org/conference/usenixsecurity22/presentation/arp",
+    "kind": "research paper",
+    "review_status": "Abstract and relevant full-text evaluation pitfalls inspected",
+    "summary": "Highlights biased collection, leakage, weak metrics and unrealistic threat models in security ML.",
+    "project_implication": "Guides grouped splits, fair tuning, base-rate analysis and deployment-oriented validation.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S24",
+    "title": "Lundberg & Lee — A Unified Approach to Interpreting Model Predictions (2017)",
+    "url": "https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html",
+    "kind": "research paper",
+    "review_status": "Abstract screened",
+    "summary": "Introduces SHAP as additive attribution of model outputs.",
+    "project_implication": "Explain the model’s reasoning; do not interpret attribution as causal proof of an attack.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S25",
+    "title": "Chen & Guestrin — XGBoost (2016)",
+    "url": "https://arxiv.org/abs/1603.02754",
+    "kind": "research paper",
+    "review_status": "Abstract screened",
+    "summary": "Describes a scalable tree-boosting system.",
+    "project_implication": "Motivates a candidate; it does not establish superiority on RoadTrust’s data.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S26",
+    "title": "Guo et al. — On Calibration of Modern Neural Networks (2017)",
+    "url": "https://arxiv.org/abs/1706.04599",
+    "kind": "research paper",
+    "review_status": "Abstract screened",
+    "summary": "Studies confidence calibration and post-processing for neural models.",
+    "project_implication": "Calibration background; reported neural results are not direct evidence for calibrating this forest.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S27",
+    "title": "scikit-learn — Probability calibration",
+    "url": "https://scikit-learn.org/stable/modules/calibration.html",
+    "kind": "official documentation",
+    "review_status": "Reference page opened; detailed method review pending",
+    "summary": "Reference for probability-calibration workflows.",
+    "project_implication": "Fit calibration without touching the final test set; verify methods against the pinned version.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S28",
+    "title": "scikit-learn — Cross-validation",
+    "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+    "kind": "official documentation",
+    "review_status": "Reference page opened; detailed splitter review pending",
+    "summary": "Reference for grouped and temporal model evaluation.",
+    "project_implication": "Implement grouping from the actual recording lineage, not merely a random row split.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S29",
+    "title": "scikit-learn — RandomForestClassifier.predict_proba",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
+    "kind": "official documentation",
+    "review_status": "Exact predict_proba definition inspected",
+    "summary": "A forest score averages tree class probabilities; it need not equal the fraction of hard tree votes.",
+    "project_implication": "Correct existing score descriptions; retain the uncalibrated-score warning.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S30",
+    "title": "FastAPI — Features",
+    "url": "https://fastapi.tiangolo.com/features/",
+    "kind": "official documentation",
+    "review_status": "Schema/API sections inspected",
+    "summary": "Supports API schemas and validation around Python services.",
+    "project_implication": "Proposed backend wrapper around the existing pipeline; authentication policy still needs implementation.",
+    "accessed": "2026-10-09"
+  },
+  {
+    "id": "S31",
+    "title": "MLflow — Experiment tracking",
+    "url": "https://mlflow.org/docs/latest/ml/tracking/",
+    "kind": "official documentation",
+    "review_status": "Run tracking sections inspected",
+    "summary": "Records parameters, versions, metrics and artifacts.",
+    "project_implication": "Proposed run catalog; data lineage and split integrity still require project code.",
+    "accessed": "2026-10-09"
+  }
+]

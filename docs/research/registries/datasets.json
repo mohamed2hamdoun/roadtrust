@@ -1,0 +1,114 @@
+[
+  {
+    "id": "D01",
+    "name": "RoadTrust synthetic v0.3.0",
+    "url": "local repository at b4c4a03d1ff852a07c8ffa4c53167b59f5662567",
+    "origin": "synthetic",
+    "labels": "simulation labels",
+    "purpose": "Reference regression data; not external validation",
+    "source_ids": [],
+    "status": "source_and_stored_metrics_inspected",
+    "license_review": "repository ownership; no LICENSE found in inspected tree",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  },
+  {
+    "id": "D02",
+    "name": "VeReMi Extension",
+    "url": "https://veremi-dataset.github.io/veremi-extension",
+    "origin": "synthetic",
+    "labels": "simulator/injector labels",
+    "purpose": "External V2X benchmark; version-specific schema audit required",
+    "source_ids": [
+      "S07"
+    ],
+    "status": "not_acquired",
+    "license_review": "pending",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  },
+  {
+    "id": "D03",
+    "name": "VeReMi NextGen",
+    "url": "https://veremi-dataset.github.io/veremi-nextgen",
+    "origin": "synthetic",
+    "labels": "post-processed misbehavior labels",
+    "purpose": "Candidate primary CAM benchmark; keep its official split and inspect shared lineage",
+    "source_ids": [
+      "S08",
+      "S09"
+    ],
+    "status": "not_acquired",
+    "license_review": "pending",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  },
+  {
+    "id": "D04",
+    "name": "nuScenes CAN expansion",
+    "url": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/can_bus/README.md",
+    "origin": "real driving telemetry",
+    "labels": "not a ready-made V2X attack label source",
+    "purpose": "Benign kinematics and noise; any later injection must be labelled synthetic overlay",
+    "source_ids": [
+      "S10"
+    ],
+    "status": "not_acquired",
+    "license_review": "pending",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  },
+  {
+    "id": "D05",
+    "name": "BerlinV2X",
+    "url": "https://github.com/fraunhoferhhi/BerlinV2X",
+    "origin": "real radio/GPS measurements",
+    "labels": "attack labels not established by inspected overview",
+    "purpose": "Communication impairment realism and benign robustness",
+    "source_ids": [
+      "S11"
+    ],
+    "status": "not_acquired",
+    "license_review": "pending",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  },
+  {
+    "id": "D06",
+    "name": "ROAD",
+    "url": "https://zenodo.org/records/10462796",
+    "origin": "real CAN with mixed real/simulated attack cases",
+    "labels": "attack-type provenance must be retained",
+    "purpose": "Separate in-vehicle CAN detector track",
+    "source_ids": [
+      "S12",
+      "S13"
+    ],
+    "status": "not_acquired",
+    "license_review": "pending",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  },
+  {
+    "id": "D07",
+    "name": "DAIR-V2X / V2X-Seq",
+    "url": "https://github.com/AIR-THU/DAIR-V2X",
+    "origin": "real cooperative perception",
+    "labels": "perception/trajectory labels",
+    "purpose": "Optional later cross-sensor/perception work; not a direct IDS training replacement",
+    "source_ids": [
+      "S14"
+    ],
+    "status": "not_acquired",
+    "license_review": "pending",
+    "download_checksum": null,
+    "accepted_feature_ids": [],
+    "sample_audit": null
+  }
+]

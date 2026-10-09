@@ -1,0 +1,155 @@
+[
+  {
+    "id": "ADR01",
+    "title": "Initial product boundary",
+    "status": "proposed",
+    "proposal": "Receiver-side monitoring platform with separate CAN/perception tracks",
+    "requirement_ids": [
+      "R01",
+      "R05",
+      "R12"
+    ],
+    "source_ids": [
+      "S01",
+      "S02"
+    ],
+    "experiment_ids": [
+      "E03"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Confirm actual operator and target hardware."
+  },
+  {
+    "id": "ADR02",
+    "title": "External benchmark",
+    "status": "pending",
+    "proposal": "D02 versus D03 after sample audit",
+    "requirement_ids": [
+      "R01",
+      "R03",
+      "R04"
+    ],
+    "source_ids": [
+      "S07",
+      "S08",
+      "S09"
+    ],
+    "experiment_ids": [
+      "E03",
+      "E06"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Revisit if required fields or data rights fail."
+  },
+  {
+    "id": "ADR03",
+    "title": "Model and feature selection",
+    "status": "pending",
+    "proposal": "No winner selected",
+    "requirement_ids": [
+      "R02",
+      "R03",
+      "R04",
+      "R06"
+    ],
+    "source_ids": [
+      "S23",
+      "S24",
+      "S25",
+      "S27",
+      "S29"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E04",
+      "E05",
+      "E06",
+      "E08"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Choose only after eligible comparisons; revalidate new domains."
+  },
+  {
+    "id": "ADR04",
+    "title": "Offline evidence architecture",
+    "status": "proposed",
+    "proposal": "Durable incident/outbox; asynchronous explanation and anchoring",
+    "requirement_ids": [
+      "R05",
+      "R07"
+    ],
+    "source_ids": [
+      "S20",
+      "S22"
+    ],
+    "experiment_ids": [
+      "E09",
+      "E11"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Revisit when load, device storage or retention changes."
+  },
+  {
+    "id": "ADR05",
+    "title": "Blockchain platform",
+    "status": "pending",
+    "proposal": "Compare signed log, Fabric variants and Besu QBFT",
+    "requirement_ids": [
+      "R07",
+      "R08"
+    ],
+    "source_ids": [
+      "S20",
+      "S21",
+      "S22"
+    ],
+    "experiment_ids": [
+      "E09"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Independent participants and fault model are prerequisites."
+  },
+  {
+    "id": "ADR06",
+    "title": "Simulator selection",
+    "status": "pending",
+    "proposal": "MOSAIC versus Veins spike; CARLA and PC5 models conditional",
+    "requirement_ids": [
+      "R01",
+      "R09"
+    ],
+    "source_ids": [
+      "S15",
+      "S16",
+      "S17",
+      "S18",
+      "S19"
+    ],
+    "experiment_ids": [
+      "E07",
+      "E10"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Revisit if radio profile, sensor needs or host compatibility changes."
+  },
+  {
+    "id": "ADR07",
+    "title": "Backend and GUI technology",
+    "status": "proposed",
+    "proposal": "Python service boundary; FastAPI and separate web client candidates",
+    "requirement_ids": [
+      "R10",
+      "R11"
+    ],
+    "source_ids": [
+      "S30",
+      "S31"
+    ],
+    "experiment_ids": [
+      "E11",
+      "E13"
+    ],
+    "selection_evidence": [],
+    "revisit_trigger": "Select versions after contract/load/usability spike."
+  }
+]

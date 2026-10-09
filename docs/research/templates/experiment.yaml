@@ -1,0 +1,27 @@
+# Template only: not an executable training configuration yet.
+experiment_id: E04
+run_id: null
+status: planned
+hypothesis: null
+code_commit: null
+environment_lock_sha256: null
+dataset_manifest_sha256: null
+split_manifest_sha256: null
+observation_profile: null
+feature_schema_version: null
+model_family: null
+hyperparameters: {}
+seed: null
+hardware: null
+tuning_budget: null
+calibration_manifest: null
+threshold_selection_manifest: null
+alert_aggregation_policy: null
+operating_budgets:
+  minimum_event_recall: null
+  maximum_false_incidents_per_receiver_hour: null
+  maximum_p99_latency_ms: null
+  maximum_memory_mb: null
+results: null
+observed_limitations: []
+selection_decision: pending

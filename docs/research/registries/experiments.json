@@ -1,0 +1,245 @@
+[
+  {
+    "id": "E01",
+    "name": "Baseline reproduction and provenance",
+    "hypothesis": "Can a clean environment reproduce the archived metrics and establish a trustworthy starting point?",
+    "dataset_ids": [
+      "D01"
+    ],
+    "source_ids": [
+      "S23",
+      "S29"
+    ],
+    "status": "complete",
+    "runs": [
+      "2026-10-09 clean uv.lock install, Python 3.13.5 and 3.12.10, tag v0.3.0-hackathon"
+    ],
+    "result": "Exact reproduction: identical dataset SHA-256 and identical detection metrics on both Python versions; 120/120 tests pass. See docs/research/reproduction/E01_v0.3.0_reproduction.md",
+    "limitations_observed": [
+      "Score is predict_proba, not a vote fraction: 56 of 32,297 test decisions flip at 0.35 if read as votes",
+      "Python version not pinned by the lockfile",
+      "Model metadata stores data path, not data hash",
+      "Reproducibility shown on one machine and synthetic data only"
+    ],
+    "selection_decision": "Reference row for the P6 benchmark"
+  },
+  {
+    "id": "E02",
+    "name": "Feature-group and leave-one-feature ablations",
+    "hypothesis": "Which observable features add benefit beyond rules and which rely on artifacts?",
+    "dataset_ids": [
+      "D01",
+      "D02",
+      "D03"
+    ],
+    "source_ids": [
+      "S23",
+      "S09"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E03",
+    "name": "Adapter and availability audit",
+    "hypothesis": "Can each selected input be obtained causally at a real receiver, with correct units and missingness?",
+    "dataset_ids": [
+      "D02",
+      "D03",
+      "D04",
+      "D05"
+    ],
+    "source_ids": [
+      "S09",
+      "S10",
+      "S11"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E04",
+    "name": "Classical algorithm benchmark",
+    "hypothesis": "Which eligible model best trades detection, false alarms and edge cost?",
+    "dataset_ids": [
+      "D02",
+      "D03"
+    ],
+    "source_ids": [
+      "S23",
+      "S25",
+      "S28"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E05",
+    "name": "Unknown attacks and temporal models",
+    "hypothesis": "Do novelty/sequence methods help on truly unseen attack families?",
+    "dataset_ids": [
+      "D02",
+      "D03"
+    ],
+    "source_ids": [
+      "S23"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E06",
+    "name": "Cross-domain generalization",
+    "hypothesis": "How much do performance and calibration degrade across datasets, roads and receivers?",
+    "dataset_ids": [
+      "D02",
+      "D03",
+      "D04",
+      "D05"
+    ],
+    "source_ids": [
+      "S23",
+      "S27"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E07",
+    "name": "Connectivity, clock and GNSS impairment",
+    "hypothesis": "Does benign degradation trigger false attack claims or break local detection?",
+    "dataset_ids": [
+      "D03",
+      "D04",
+      "D05"
+    ],
+    "source_ids": [
+      "S02",
+      "S11"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E08",
+    "name": "Explanation fidelity and usefulness",
+    "hypothesis": "Are attributions faithful, stable, timely and understandable?",
+    "dataset_ids": [
+      "D03"
+    ],
+    "source_ids": [
+      "S24"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E09",
+    "name": "Ledger comparison and failure campaign",
+    "hypothesis": "What does multi-party consensus add beyond signed off-box checkpoints, at what cost?",
+    "dataset_ids": [
+      "D01"
+    ],
+    "source_ids": [
+      "S20",
+      "S21",
+      "S22"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E10",
+    "name": "Simulator parity and network effects",
+    "hypothesis": "Does the selected simulator produce receiver traces with measured loss, timing and reproducible seeds?",
+    "dataset_ids": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "source_ids": [
+      "S15",
+      "S16",
+      "S18",
+      "S19"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E11",
+    "name": "App load, recovery and access control",
+    "hypothesis": "Can a private staging service meet its declared workload and recover without losing acknowledged incidents?",
+    "dataset_ids": [
+      "D01"
+    ],
+    "source_ids": [
+      "S30"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E12",
+    "name": "CAN extension benchmark",
+    "hypothesis": "Does a separate CAN adapter/model generalize beyond one recording?",
+    "dataset_ids": [
+      "D06"
+    ],
+    "source_ids": [
+      "S01",
+      "S12"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  },
+  {
+    "id": "E13",
+    "name": "Operator usability",
+    "hypothesis": "Can operators investigate an alert and verify its evidence without confusing score, truth and commit state?",
+    "dataset_ids": [
+      "D01"
+    ],
+    "source_ids": [
+      "S24"
+    ],
+    "status": "planned",
+    "runs": [],
+    "result": null,
+    "limitations_observed": [],
+    "selection_decision": "pending"
+  }
+]

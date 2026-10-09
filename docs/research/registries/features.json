@@ -1,0 +1,666 @@
+[
+  {
+    "id": "F001",
+    "name": "speed_mps",
+    "unit": "m/s",
+    "scope": "message",
+    "current_definition": "Speed as reported in the message payload.",
+    "current_rationale": "Spoofed-speed attacks report values outside the plausible range.",
+    "first_message_current": "as reported",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Claimed speed may be jointly forged with position; high speed alone is not proof of abuse.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F002",
+    "name": "acceleration_mps2",
+    "unit": "m/s^2",
+    "scope": "message",
+    "current_definition": "Acceleration as reported in the message payload.",
+    "current_rationale": "Implausible acceleration is a cheap sign of fabricated telemetry.",
+    "first_message_current": "as reported",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Verify longitudinal versus vector acceleration, gravity handling and units; fixed limits need vehicle/context evidence.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F003",
+    "name": "latency_ms",
+    "unit": "ms",
+    "scope": "message",
+    "current_definition": "Receiver-measured one-way delay: (recv_time - sent_time) * 1000.",
+    "current_rationale": "Flooding and congested links shift the latency distribution.",
+    "first_message_current": "as measured",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Not trustworthy one-way delay without independently observed arrival time and compatible clocks; sender time can be forged.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "latency candidate from recorded times with trust caveat",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S11",
+      "S02"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F004",
+    "name": "signal_strength_dbm",
+    "unit": "dBm",
+    "scope": "message",
+    "current_definition": "Receiver-measured RSSI of the radio frame carrying the message.",
+    "current_rationale": "A transmitter whose RSSI does not match its claimed distance is suspicious; also separates a nearby flooder from distant traffic.",
+    "first_message_current": "as measured",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Receiver measurement only; multipath, power control and missing radio telemetry undermine simple distance interpretations.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "not present in inspected message schema; omit/mask, never fabricate",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S11",
+      "S02"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F005",
+    "name": "position_jump_m",
+    "unit": "m",
+    "scope": "sender",
+    "current_definition": "Euclidean distance between this report's (x, y) and the previous report's (x, y) from the same sender ID.",
+    "current_rationale": "Position spoofing teleports the claimed location.",
+    "first_message_current": "0.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Depends on projected coordinates, timestamp order, GNSS uncertainty and pseudonym continuity.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F006",
+    "name": "jump_excess_m",
+    "unit": "m",
+    "scope": "sender",
+    "current_definition": "position_jump_m - max(speed_mps, prev_speed_mps) * dt_prev_s, where dt_prev_s is clamped at >= 0. Positive means the sender moved further than its own reported speed can explain.",
+    "current_rationale": "Separates a real fast vehicle (jump explained by speed) from a teleport (jump unexplained). Needs no division, so it stays finite when two reports share a timestamp.",
+    "first_message_current": "0.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "The sender controls position and speed; coordinated false trajectories can satisfy this check. A residual is not an invariant of truth.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F007",
+    "name": "speed_change_mps",
+    "unit": "m/s",
+    "scope": "sender",
+    "current_definition": "speed_mps - previous reported speed from the same sender ID.",
+    "current_rationale": "Spoofed speed usually arrives as a step change.",
+    "first_message_current": "0.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Distinguish noisy speed updates, quantization and emergency maneuvers from fabricated jumps.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F008",
+    "name": "speed_change_excess_mps",
+    "unit": "m/s",
+    "scope": "sender",
+    "current_definition": "|speed_change_mps| - PLAUSIBLE_ACCEL_MPS2 * dt_prev_s (dt clamped at >= 0). Positive means the speed changed faster than hard braking or full acceleration allows.",
+    "current_rationale": "Keeps a legitimate hard brake (explained by elapsed time) apart from a fabricated speed step.",
+    "first_message_current": "0.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "The 6 m/s^2 constant is a demo assumption, not a universal physical maximum.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F009",
+    "name": "heading_change_abs_rad",
+    "unit": "rad",
+    "scope": "sender",
+    "current_definition": "|wrap_to_pi(heading - previous heading)|, i.e. the shorter angular distance, so 359 deg -> 1 deg is 2 deg and not 358 deg.",
+    "current_rationale": "A sudden large turn is physically impossible at road speed.",
+    "first_message_current": "0.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Must normalize true-north/clockwise versus +x/counter-clockwise headings; small elapsed time and stationary heading need explicit handling.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23",
+      "S10",
+      "S03"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F010",
+    "name": "sender_msgs_in_window",
+    "unit": "count",
+    "scope": "sender",
+    "current_definition": "Number of messages received from this sender ID in the last RATE_WINDOW_S seconds, including the current one.",
+    "current_rationale": "Direct, causal measure of per-identity flooding. Replaces the old 1/dt message rate, which collapsed to 0 on duplicate timestamps.",
+    "first_message_current": "1",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Legitimate adaptive beacon rates and duplicate reception can change counts; rates belong to one receiver view.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F011",
+    "name": "network_msgs_in_window",
+    "unit": "count",
+    "scope": "network",
+    "current_definition": "Total messages received from all senders in the last RATE_WINDOW_S seconds, including the current one.",
+    "current_rationale": "Flooding raises channel occupancy even when spread over fake IDs.",
+    "first_message_current": "1",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Received message count is not measured channel occupancy; packet loss can hide overload.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F012",
+    "name": "sender_share_in_window",
+    "unit": "ratio",
+    "scope": "network",
+    "current_definition": "sender_msgs_in_window / network_msgs_in_window.",
+    "current_rationale": "One identity monopolising the channel is the signature of a single-ID denial-of-service source.",
+    "first_message_current": "1.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Topology and visibility change the denominator; low-density receivers are a separate stress case.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F013",
+    "name": "duplicate_payloads_in_window",
+    "unit": "count",
+    "scope": "sender",
+    "current_definition": "Messages from this sender ID inside the window whose (x, y) is within DUP_POSITION_TOL_M and speed within DUP_SPEED_TOL_MPS of the current report, excluding the current one.",
+    "current_rationale": "A flooding transmitter cannot physically move between its own back-to-back frames, so its reports repeat.",
+    "first_message_current": "0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "A stopped car can send unchanged telemetry; approximate equality is not a replay-proof identifier.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F014",
+    "name": "sender_age_s",
+    "unit": "s",
+    "scope": "sender",
+    "current_definition": "Simulation time since the first message ever seen from this sender ID.",
+    "current_rationale": "Sybil identities are young. A legitimately joining vehicle is also young, which is exactly why this feature alone is not sufficient - see cospatial_senders.",
+    "first_message_current": "0.0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Tracks observed pseudonym age, not physical vehicle age; legitimate pseudonym rotation resets history.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F015",
+    "name": "active_senders_in_window",
+    "unit": "count",
+    "scope": "network",
+    "current_definition": "Number of distinct sender IDs heard in the last RATE_WINDOW_S seconds.",
+    "current_rationale": "A Sybil burst inflates the apparent population of the cell.",
+    "first_message_current": "1",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Counts aliases, not physical radios; density and privacy rotations are confounders.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F016",
+    "name": "cospatial_senders",
+    "unit": "count",
+    "scope": "network",
+    "current_definition": "Number of OTHER sender IDs whose most recent reported position lies within COSPATIAL_RADIUS_M of this report's position.",
+    "current_rationale": "Two identities cannot occupy the same few metres of road. This is the only feature that gives the receiver real evidence of a Sybil clone rather than of a new arrival.",
+    "first_message_current": "0",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Distinct legitimate road users can be within 5 m; spoofed identities can deliberately spread out.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  },
+  {
+    "id": "F017",
+    "name": "nearest_sender_distance_m",
+    "unit": "m",
+    "scope": "network",
+    "current_definition": "Distance to the closest other sender's most recent reported position. Set to NEAREST_NONE_M when no other sender is known.",
+    "current_rationale": "Continuous version of cospatial_senders; near-zero values indicate a cloned position.",
+    "first_message_current": "NEAREST_NONE_M",
+    "evidence_status": "implemented in synthetic baseline; external validity untested",
+    "review_status": "candidate_retain_or_revise",
+    "deployment_caveat": "Use explicit missingness and freshness; the 10000 m sentinel is tied to the current toy world.",
+    "availability": {
+      "D01": "existing synthetic field or derivation",
+      "D02": "adapter audit pending",
+      "D03": "candidate derivation from receiver log; sample audit pending",
+      "D04": "motion-only support; no joint V2X stream",
+      "D05": "radio-only or GPS support; not a full message stream",
+      "D06": "different CAN task; do not map directly",
+      "D07": "different perception task; do not map directly"
+    },
+    "source_ids": [
+      "S09",
+      "S23"
+    ],
+    "experiment_ids": [
+      "E02",
+      "E03"
+    ],
+    "required_tests": [
+      "causal prefix invariance",
+      "unit conversion and unavailable values",
+      "session/receiver isolation",
+      "missingness behavior",
+      "feature-group ablation"
+    ],
+    "decision": "pending",
+    "measured_external_benefit": null
+  }
+]

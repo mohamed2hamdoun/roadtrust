@@ -1,0 +1,217 @@
+[
+  {
+    "id": "C01",
+    "case": "WAN unavailable; direct radio healthy",
+    "impact": "Cloud UI and anchoring unavailable",
+    "proposed_behavior": "Continue local checks/inference; persist queue; show pending evidence",
+    "acceptance_evidence": "Disconnect/reconnect trace with no lost acknowledged incident",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C02",
+    "case": "Cellular coverage lost",
+    "impact": "Network-assisted services may fail",
+    "proposed_behavior": "Report precise link state; do not assume direct mode is usable",
+    "acceptance_evidence": "Chosen radio/profile out-of-coverage experiment",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C03",
+    "case": "Direct radio congestion/loss",
+    "impact": "Missing, delayed, uneven observations",
+    "proposed_behavior": "Mark visibility degraded; track stale data and missingness",
+    "acceptance_evidence": "Network-simulator delivery trace and benign FPR",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C04",
+    "case": "Suspected radio interference",
+    "impact": "Similar symptom to congestion or obstruction",
+    "proposed_behavior": "Report degradation; do not label every dropout malicious",
+    "acceptance_evidence": "Matched benign/attack cases; distinguish uncertainty",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C05",
+    "case": "GNSS loss or multipath",
+    "impact": "Position quality falls",
+    "proposed_behavior": "Expose uncertainty; disable unsupported residuals or select a trained profile",
+    "acceptance_evidence": "GNSS-error sweeps and recovery trace",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C06",
+    "case": "Sender clock manipulated",
+    "impact": "Claimed time unreliable",
+    "proposed_behavior": "Use receiver monotonic time for local windows; bound claims",
+    "acceptance_evidence": "Timestamp/replay fixtures",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C07",
+    "case": "Receiver time jumps/restarts",
+    "impact": "Window and expiry errors possible",
+    "proposed_behavior": "Separate monotonic ordering from UTC; create a new boot epoch",
+    "acceptance_evidence": "Clock reset and restart tests",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C08",
+    "case": "Invalid signature or unknown issuer",
+    "impact": "Authentication failure",
+    "proposed_behavior": "Preserve bytes and reason; separate this from ML score",
+    "acceptance_evidence": "Known-valid/invalid test vectors",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C09",
+    "case": "Valid signature, false telemetry",
+    "impact": "Authentication succeeds",
+    "proposed_behavior": "Continue plausibility/detection checks",
+    "acceptance_evidence": "Credential-valid misbehavior scenario",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C10",
+    "case": "Certificate expiry/revocation while offline",
+    "impact": "Trust information may be stale",
+    "proposed_behavior": "Display revocation freshness; apply a documented conservative policy",
+    "acceptance_evidence": "Cached-policy expiry and reconnection test",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C11",
+    "case": "Legitimate pseudonym rotation",
+    "impact": "Identity history changes",
+    "proposed_behavior": "Reset bounded state; avoid a false Sybil claim",
+    "acceptance_evidence": "Repeated privacy rotations in normal traffic",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C12",
+    "case": "Compromised RSU/receiver",
+    "impact": "Local observation or logs may lie",
+    "proposed_behavior": "Record reporter identity; cross-check only where independent evidence exists",
+    "acceptance_evidence": "Conflicting multi-receiver observations",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C13",
+    "case": "Backend/database down",
+    "impact": "Upload unavailable",
+    "proposed_behavior": "Bound local backlog and apply declared disk policy",
+    "acceptance_evidence": "Queue saturation and service recovery",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C14",
+    "case": "Blockchain quorum lost",
+    "impact": "New commitments cannot finalize",
+    "proposed_behavior": "Continue detection; clearly retain pending status",
+    "acceptance_evidence": "Partition campaign; verify catch-up",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E09"
+    ]
+  },
+  {
+    "id": "C15",
+    "case": "Queue disk full",
+    "impact": "Evidence cannot all be retained",
+    "proposed_behavior": "Explicit loss counter and priority/retention policy; never claim complete capture",
+    "acceptance_evidence": "Capacity limit and alarm test",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C16",
+    "case": "Malformed or oversized frames",
+    "impact": "Parser/memory pressure",
+    "proposed_behavior": "Bounded parser, schema rejection and rate limits",
+    "acceptance_evidence": "Malformed-input and resource tests",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C17",
+    "case": "New benign road/density",
+    "impact": "Distribution shifts",
+    "proposed_behavior": "Monitor drift and abstain when required",
+    "acceptance_evidence": "Held-out geography/density results",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  },
+  {
+    "id": "C18",
+    "case": "New attack family",
+    "impact": "Supervised labels incomplete",
+    "proposed_behavior": "Mark unknown/out-of-distribution; avoid invented attack type",
+    "acceptance_evidence": "Leave-one-family-out evaluation",
+    "status": "not_executed",
+    "experiment_ids": [
+      "E07",
+      "E11"
+    ]
+  }
+]

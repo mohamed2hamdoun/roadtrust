@@ -1,0 +1,74 @@
+[
+  {
+    "id": "R01",
+    "requirement": "Every input has documented units, provenance, trust and availability",
+    "acceptance_evidence": "Adapter contract plus sample audit",
+    "status": "proposed"
+  },
+  {
+    "id": "R02",
+    "requirement": "The feature path is causal and identical offline/online",
+    "acceptance_evidence": "Prefix-invariance and replay-parity checks",
+    "status": "proposed"
+  },
+  {
+    "id": "R03",
+    "requirement": "No source lineage, label or hidden identity leaks into evaluation",
+    "acceptance_evidence": "Pairwise split/lineage audit",
+    "status": "proposed"
+  },
+  {
+    "id": "R04",
+    "requirement": "Selection compares detection and false alarms with resource cost",
+    "acceptance_evidence": "Frozen protocol and reproducible run bundle",
+    "status": "proposed"
+  },
+  {
+    "id": "R05",
+    "requirement": "WAN or blockchain failure does not halt local detection",
+    "acceptance_evidence": "Failure-injection trace and bounded queue behavior",
+    "status": "proposed"
+  },
+  {
+    "id": "R06",
+    "requirement": "Explanations distinguish attribution from verified incident truth",
+    "acceptance_evidence": "Fidelity checks and operator tasks",
+    "status": "proposed"
+  },
+  {
+    "id": "R07",
+    "requirement": "Evidence is durable and independently verifiable",
+    "acceptance_evidence": "Crash recovery, tamper and receipt tests",
+    "status": "proposed"
+  },
+  {
+    "id": "R08",
+    "requirement": "A real chain demonstrates independently validated transactions",
+    "acceptance_evidence": "Multi-node consensus and quorum-loss evidence",
+    "status": "proposed"
+  },
+  {
+    "id": "R09",
+    "requirement": "Simulators expose the phenomena claimed in the evaluation",
+    "acceptance_evidence": "Pinned configuration and receiver traces",
+    "status": "proposed"
+  },
+  {
+    "id": "R10",
+    "requirement": "The GUI is a client of the service, with clear stale/offline states",
+    "acceptance_evidence": "API, authorization and usability checks",
+    "status": "proposed"
+  },
+  {
+    "id": "R11",
+    "requirement": "A deployment can be installed, monitored, backed up and rolled back",
+    "acceptance_evidence": "Rehearsed staging runbook",
+    "status": "proposed"
+  },
+  {
+    "id": "R12",
+    "requirement": "Conclusions name the data and operational conditions supporting them",
+    "acceptance_evidence": "Limitations and claim-to-evidence register",
+    "status": "proposed"
+  }
+]
