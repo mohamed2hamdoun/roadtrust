@@ -30,6 +30,7 @@ for kind in [
     "decisions",
     "failure_cases",
     "threats",
+    "targets",
 ]:
     records[kind], ids[kind] = load(kind)
 
@@ -63,6 +64,13 @@ for row in records["threats"]:
         assert set(row[field]) <= allowed, f"threats/{row['id']}: bad {field} {row[field]}"
     assert row["coverage"] in {"dataset", "simulate", "gap"}, f"threats/{row['id']}: coverage"
     assert row["coverage"] != "dataset" or row["dataset_ids"], f"threats/{row['id']}: no dataset"
+
+# Operational targets (ADR19): every target is typed, scoped and marked provisional or final.
+for row in records["targets"]:
+    assert row["operator"] in {"<=", ">="}, f"targets/{row['id']}: operator"
+    assert isinstance(row["value"], int | float), f"targets/{row['id']}: value"
+    assert set(row["applies_to"]) <= THREAT_VOCAB["profiles"], f"targets/{row['id']}: profile"
+    assert row["status"] in {"provisional", "accepted"}, f"targets/{row['id']}: status"
 
 names = [f["name"] for f in records["features"]]
 assert len(names) == 17 and len(set(names)) == 17, "Baseline feature inventory incomplete"
