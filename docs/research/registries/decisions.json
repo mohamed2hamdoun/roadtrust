@@ -283,5 +283,22 @@
     ],
     "record": "decisions/ADR14-record-system.md",
     "revisit_trigger": "Record friction slows work, a second contributor joins, or empty records pass"
+  },
+  {
+    "id": "ADR15",
+    "title": "Internal disk with 60 GB cap, data outside repo, CARLA on lab GPU",
+    "status": "accepted",
+    "proposal": "ROADTRUST_DATA_DIR (default ~/roadtrust-data) via roadtrust.paths.data_dir(), guarded against repo paths; move to SSD past 60 GB",
+    "requirement_ids": [
+      "R07",
+      "R11"
+    ],
+    "source_ids": [],
+    "experiment_ids": [],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 0.6"
+    ],
+    "record": "decisions/ADR15-storage-and-compute.md",
+    "revisit_trigger": "Data over 60 GB, free space under 40 GB, RAM limits, or lab access changes"
   }
 ]

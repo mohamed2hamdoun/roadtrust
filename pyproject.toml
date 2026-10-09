@@ -29,6 +29,7 @@ dev = [
 [tool.ruff]
 target-version = "py312"
 line-length = 100
+src = ["core", "tools"]  # first-party code, for import sorting
 # Research docs are prose; keep formatters out of them.
 extend-exclude = ["docs"]
 

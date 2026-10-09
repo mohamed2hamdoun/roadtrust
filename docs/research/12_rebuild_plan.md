@@ -97,7 +97,7 @@ alongside P5–P6. GUI research and design (9.1–9.3) can start right after P1.
 | 0.3 | Repository and layout. **Decided:** new private repo `roadtrust` ([ADR08](decisions/ADR08-separate-repository.md)); one repo with `core/` (Python package `roadtrust`), `sim/`, `chain/`, `web/`, `deploy/`, each created when its phase starts ([ADR09](decisions/ADR09-monorepo-layout.md)); one branch and PR per step ([ADR10](decisions/ADR10-branching-and-prs.md)). | ADR08, ADR09, ADR10 |
 | 0.4 | Tooling: uv, ruff, pytest + hypothesis, pre-commit, GitHub Actions CI running tests and `tools/research/validate_registry.py`. **Decided:** Python 3.12 ([ADR11](decisions/ADR11-python-and-packaging.md)), Ruff + strict mypy + pre-commit + Hypothesis ([ADR12](decisions/ADR12-code-quality-tools.md)), GitHub Actions ([ADR13](decisions/ADR13-continuous-integration.md)). | CI green on empty skeleton |
 | 0.5 | Change-record and ADR templates and an index; every later commit links one. **Decided:** ADR format from ADR08–13, enforced by the validator, a commit-message check and a PR template ([ADR14](decisions/ADR14-record-system.md)). | `docs/research/changes/` |
-| 0.6 | Storage check. **Only ~27 GB free.** Datasets, Docker images and simulator builds need more. Decide: external SSD, cleanup, or cloud/lab machine. | ADR: compute and storage |
+| 0.6 | Storage and compute. **Decided:** internal disk (100 GB free on 9 October) with a 60 GB project-data cap, data in `~/roadtrust-data` outside the repo, CARLA on the university lab GPU ([ADR15](decisions/ADR15-storage-and-compute.md)). | ADR15 |
 
 ## P1 — Scope and threat model
 
@@ -176,7 +176,7 @@ license, version, checksums, size, fields, labels, clocks, identity semantics, l
 | 4C.2 | Pick one (ADR06). Build a minimal scenario that emits per-receiver delivery events in schema v1, with ground truth in the oracle channel. |
 | 4C.3 | Validation tests from E10: stopped car, constant speed, turn, hard brake; packet loss; determinism across reruns. |
 | 4C.4 | Scenario library: densities, road types, pseudonym change, GNSS error, congestion, each attack from the P1 catalog, run closed-loop so DoS affects the radio. |
-| 4C.5 | CARLA only for the later perception track, on a GPU Linux/Windows host. Not on this Mac. |
+| 4C.5 | CARLA only for the later perception track, on the university lab GPU machine (ADR15). Not on this Mac. |
 
 ### 4.6 — Dataset assembly
 
@@ -257,7 +257,7 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 1. First deployment target (RSU edge monitor proposed).
 2. Target region, which decides the V2X message and radio profile.
 3. Team size, weekly hours and any deadline (competition round, graduation, paper).
-4. Storage and compute: external SSD, cleanup, or a lab/cloud machine (only ~27 GB free; no NVIDIA GPU for CARLA).
+4. ~~Storage and compute~~ — decided in [ADR15](decisions/ADR15-storage-and-compute.md).
 5. Whether to record your own vehicle data (P4B) and with which car.
 6. Who the blockchain participants would be in a real deployment.
 7. The P1.4 budgets: acceptable false incidents per hour, minimum event recall, latency limit.
