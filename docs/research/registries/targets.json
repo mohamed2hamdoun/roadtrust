@@ -1,0 +1,97 @@
+[
+  {
+    "id": "TG01",
+    "metric": "False incidents reported to the operator",
+    "operator": "<=",
+    "value": 0.125,
+    "unit": "per receiver-hour",
+    "applies_to": [
+      "rsu",
+      "obu"
+    ],
+    "status": "provisional",
+    "decided_by": "owner (recommended value)",
+    "how_measured": "Benign test hours after incident grouping; one-sided 95% upper bound must meet the target (zero events in ~24 h per receiver)"
+  },
+  {
+    "id": "TG02",
+    "metric": "False driver warnings",
+    "operator": "<=",
+    "value": 0.001,
+    "unit": "per driving-hour",
+    "applies_to": [
+      "obu"
+    ],
+    "status": "provisional",
+    "decided_by": "owner (recommended value)",
+    "how_measured": "Benign driving hours, mostly simulated; zero warnings in ~3,000 h gives a 95% upper bound of 0.001/h (rule of three)"
+  },
+  {
+    "id": "TG03",
+    "metric": "Attack events detected, per attack family",
+    "operator": ">=",
+    "value": 0.9,
+    "unit": "fraction of events",
+    "applies_to": [
+      "rsu",
+      "obu"
+    ],
+    "status": "provisional",
+    "decided_by": "owner (recommended value)",
+    "how_measured": "Event = one continuous attack episode; detected if at least one alert falls inside it; reported per family with a grouped confidence interval"
+  },
+  {
+    "id": "TG04",
+    "metric": "Per-message detection latency, p99",
+    "operator": "<=",
+    "value": 100,
+    "unit": "ms",
+    "applies_to": [
+      "rsu",
+      "obu"
+    ],
+    "status": "accepted",
+    "decided_by": "owner",
+    "how_measured": "Arrival to decision on target hardware; excludes asynchronous explanation and evidence work"
+  },
+  {
+    "id": "TG05",
+    "metric": "Time from attack start to first alert, p95 over detected events",
+    "operator": "<=",
+    "value": 1.0,
+    "unit": "s",
+    "applies_to": [
+      "rsu",
+      "obu"
+    ],
+    "status": "accepted",
+    "decided_by": "owner",
+    "how_measured": "Missed events reported separately, not counted as infinite latency"
+  },
+  {
+    "id": "TG06",
+    "metric": "Sustained throughput without dropped observations",
+    "operator": ">=",
+    "value": 2000,
+    "unit": "messages/s",
+    "applies_to": [
+      "rsu"
+    ],
+    "status": "provisional",
+    "decided_by": "proposed by Claude",
+    "how_measured": "Replay at fixed rate on target hardware for 10 minutes; zero drops, bounded queue"
+  },
+  {
+    "id": "TG07",
+    "metric": "Sustained throughput without dropped observations",
+    "operator": ">=",
+    "value": 1000,
+    "unit": "messages/s",
+    "applies_to": [
+      "obu"
+    ],
+    "status": "provisional",
+    "decided_by": "proposed by Claude",
+    "how_measured": "As TG06 on OBU hardware; memory and CPU budget set when OBU hardware is chosen"
+  }
+]

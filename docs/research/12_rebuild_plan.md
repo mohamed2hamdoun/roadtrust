@@ -106,7 +106,7 @@ alongside P5–P6. GUI research and design (9.1–9.3) can start right after P1.
 | 1.1 | Confirm first deployment target. **Decided:** two profiles on one core, RSU and on-vehicle (OBU, with optional ego-sensor input and a lab-only driver warning); road-authority operators and researchers in one role-based app; replay, then lab bench; monitor and alert only ([ADR16](decisions/ADR16-deployment-targets-and-users.md)). | ADR16 (supersedes ADR01) |
 | 1.2 | Choose V2X profile by target region: EU-style C-ITS (ETSI CAM/DENM, TS 103 097 security) or US-style (SAE J2735 BSM, IEEE 1609.2). Radio: ITS-G5/802.11p vs LTE-V2X PC5 vs NR-V2X. **Decided:** ETSI CAM first (BSM adapter later), 802.11p/ITS-G5 first (cellular via a later spike), authentication checked separately from ML ([ADR17](decisions/ADR17-message-radio-and-authentication.md)). | ADR17 |
 | 1.3 | Threat catalog: attacker types (outsider without credentials, insider with valid credentials, compromised RSU, compromised sensor) × attacks (position/speed falsification, replay, DoS/flooding, Sybil, eventual stop, data replay, GNSS spoofing). Map each to the dataset that contains it. **Decided:** 4 attacker types, 4 attack families, jamming and GNSS threats, 8 benign look-alikes; non-adaptive first, adaptive in P6 robustness; 18 threats covered by datasets, 7 need simulation, 1 gap ([ADR18](decisions/ADR18-threat-model.md)). | [threats.json](registries/threats.json) |
-| 1.4 | Set measurable budgets: minimum event recall, maximum false incidents per receiver-hour, p99 latency, memory and CPU on target hardware, set per profile (RSU, OBU) plus a separate, stricter false-alarm budget for driver warnings. **These numbers are yours to choose.** | Updated requirements R04/R11 |
+| 1.4 | Set measurable budgets: minimum event recall, maximum false incidents per receiver-hour, p99 latency, memory and CPU on target hardware, set per profile (RSU, OBU) plus a separate, stricter false-alarm budget for driver warnings. **Decided:** latency fixed (p99 ≤ 100 ms, alert ≤ 1 s); false-alarm, detection and throughput targets provisional until P6 ([ADR19](decisions/ADR19-operational-targets.md)). | [targets.json](registries/targets.json) |
 | 1.5 | Verify one end-to-end signal path (sensor → ECU → gateway → OBU → radio → RSU → detector). Mark each field as measured by receiver, claimed by sender, or simulator-only. | Signal and trust map |
 
 ## P2 — Literature review
@@ -260,6 +260,6 @@ lesson lives). Leakage audit report. No mixing rows from different datasets.
 4. ~~Storage and compute~~ — decided in [ADR15](decisions/ADR15-storage-and-compute.md).
 5. Whether to record your own vehicle data (P4B) and with which car.
 6. Who the blockchain participants would be in a real deployment.
-7. The P1.4 budgets: acceptable false incidents per hour, minimum event recall, latency limit.
+7. ~~P1.4 budgets~~ — provisional in [ADR19](decisions/ADR19-operational-targets.md); confirmed in P6.
 
 None of these blocks P0 or the start of P2.

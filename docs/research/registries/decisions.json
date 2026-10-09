@@ -382,5 +382,28 @@
     ],
     "record": "decisions/ADR18-threat-model.md",
     "revisit_trigger": "Data cards contradict attack names, T4/T6 reveal missing class, a gap gets data, or a new profile"
+  },
+  {
+    "id": "ADR19",
+    "title": "Operational targets",
+    "status": "accepted",
+    "proposal": "TG01-TG07 in registries/targets.json; latency accepted, false-alarm/recall/throughput provisional until P6",
+    "requirement_ids": [
+      "R04",
+      "R11",
+      "R14"
+    ],
+    "source_ids": [
+      "S23"
+    ],
+    "experiment_ids": [
+      "E04",
+      "E11"
+    ],
+    "selection_evidence": [
+      "Owner decision 2026-10-09, plan step 1.4"
+    ],
+    "record": "decisions/ADR19-operational-targets.md",
+    "revisit_trigger": "P6 curves available, hardware chosen, real site volumes, or E13 alert-tolerance results"
   }
 ]
