@@ -88,5 +88,11 @@
     "requirement": "Every observation carries an authentication result (valid, invalid_signature, unknown_issuer, expired, revoked, unsigned, not_available) and revocation freshness, recorded separately from the ML score",
     "acceptance_evidence": "Schema tests; signed and invalid simulated traffic; outsider vs insider results reported separately",
     "status": "accepted"
+  },
+  {
+    "id": "R16",
+    "requirement": "Every in-scope threat and benign look-alike is evaluated or recorded as a gap; adaptive attackers are tested in robustness experiments",
+    "acceptance_evidence": "Per-threat rows in every P6 report; robustness report for TH06",
+    "status": "accepted"
   }
 ]
