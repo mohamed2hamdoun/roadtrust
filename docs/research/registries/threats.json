@@ -35,7 +35,7 @@
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (ConstPos, ConstPosOffset); D01 'spoofing'; D03 attack list to verify."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (ConstPos, ConstPosOffset); D01 'spoofing'. VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): constantPositionOffset, positionMirroring."
   },
   {
     "id": "TH03",
@@ -55,7 +55,7 @@
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (RandomPos, RandomPosOffset)."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (RandomPos, RandomPosOffset). VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): randomPositionOffset."
   },
   {
     "id": "TH04",
@@ -76,7 +76,7 @@
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (ConstSpeed, ConstSpeedOffset, RandomSpeed, RandomSpeedOffset); heading-only falsification to check."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (ConstSpeed, ConstSpeedOffset, RandomSpeed, RandomSpeedOffset); heading-only falsification to check. VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): constantSpeedOffset, randomSpeedOffset, zeroSpeedReport, suddenConstantSpeed, reversedHeading, feignedBraking, accelerationMultiplication."
   },
   {
     "id": "TH05",
@@ -91,11 +91,12 @@
       "obu"
     ],
     "dataset_ids": [
-      "D02"
+      "D02",
+      "D03"
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (EventualStop)."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (EventualStop). VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): suddenStop."
   },
   {
     "id": "TH06",
@@ -128,11 +129,12 @@
       "obu"
     ],
     "dataset_ids": [
-      "D02"
+      "D02",
+      "D03"
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DataReplay). Replayed signed messages can still verify; freshness checks matter."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DataReplay). Replayed signed messages can still verify; freshness checks matter. VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): dataReplay."
   },
   {
     "id": "TH08",
@@ -147,11 +149,12 @@
       "obu"
     ],
     "dataset_ids": [
-      "D02"
+      "D02",
+      "D03"
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DelayedMessages). Needs trusted receiver time (audit A03)."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DelayedMessages). Needs trusted receiver time (audit A03). VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): timeDelayAttack."
   },
   {
     "id": "TH09",
@@ -170,7 +173,7 @@
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (Disruptive)."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (Disruptive). Not in VeReMi NextGen (CR-001)."
   },
   {
     "id": "TH10",
@@ -187,11 +190,12 @@
     ],
     "dataset_ids": [
       "D01",
-      "D02"
+      "D02",
+      "D03"
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DoS, DoSRandom, DoSDisruptive); D01 'flooding'. Offline-injected DoS does not show channel effects (source S08)."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DoS, DoSRandom, DoSDisruptive); D01 'flooding'. Offline-injected DoS does not show channel effects (source S08). VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): dosAttack (message duplication)."
   },
   {
     "id": "TH11",
@@ -207,11 +211,12 @@
     ],
     "dataset_ids": [
       "D01",
-      "D02"
+      "D02",
+      "D03"
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (GridSybil); D01 'sybil'."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (GridSybil); D01 'sybil'. VeReMi NextGen names from its documentation (CR-001; confirm on data, 4A.1): trafficCongestionSybil."
   },
   {
     "id": "TH12",
@@ -230,7 +235,7 @@
     ],
     "coverage": "dataset",
     "adaptive": false,
-    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DataReplaySybil, DoSRandomSybil, DoSDisruptiveSybil)."
+    "note": "VeReMi Extension attack names per its documentation; confirm in data card (4A.1) (DataReplaySybil, DoSRandomSybil, DoSDisruptiveSybil). Not in VeReMi NextGen (CR-001)."
   },
   {
     "id": "TH13",

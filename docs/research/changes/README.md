@@ -33,6 +33,6 @@ choices go in an ADR ([template](../templates/decision_record.md)) under
 
 | CR | Title | Plan step | Status |
 |---|---|---|---|
+| CR-001 | [Add VeReMi NextGen attack names to the threat catalog](CR-001-veremi-nextgen-attack-names.md) | 1.5 | applied |
 
-No change records yet. A record's commit is found from git (see item 8), so the index
-does not repeat it.
+A record's commit is found from git (see item 8), so the index does not repeat it.
